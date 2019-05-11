@@ -1,6 +1,6 @@
-<nav class="navbar navbar-light">
+<nav class="navbar navbar-light navbar-default" role="navigation">
   <div class="container">
-    <a class="navbar-brand" routerLink="/">conduit</a>
+    <a class="navbar-brand" routerLink="/">Smart 少儿编程</a>
 
     <!-- Show this for logged out users -->
     <ul *appShowAuthed="false"
@@ -9,7 +9,8 @@
       <li class="nav-item">
         <a class="nav-link"
           routerLink="/">
-          Home
+          <i class="ion-home"></i>
+          首页
         </a>
       </li>
 
@@ -17,15 +18,8 @@
         <a class="nav-link"
           routerLink="/login"
           routerLinkActive="active">
-          Sign in
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link"
-          routerLink="/register"
-          routerLinkActive="active">
-          Sign up
+          <i class="ion-person"></i>
+          登录
         </a>
       </li>
 
@@ -40,23 +34,17 @@
           routerLink="/"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }">
-          Home
+          <i class="ion-home"></i>
+          首页
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link"
-          routerLink="/editor"
+          [routerLink]="['/mycourses', currentUser.username]"
           routerLinkActive="active">
-          <i class="ion-compose"></i>&nbsp;New Article
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link"
-          routerLink="/settings"
-          routerLinkActive="active">
-          <i class="ion-gear-a"></i>&nbsp;Settings
+          <i class="ion-calendar"></i>
+          我的课程
         </a>
       </li>
 
@@ -64,12 +52,32 @@
         <a class="nav-link"
           [routerLink]="['/profile', currentUser.username]"
           routerLinkActive="active">
+          <i class="ion-clipboard"></i>
+          我的作业
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link"
+          href="http://47.104.75.28/">
+          <i class="ion-compose"></i>&nbsp;自由创作
+        </a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown">
           <img [src]="currentUser.image" *ngIf="currentUser.image" class="user-pic" />
           {{ currentUser.username }}
         </a>
+        <ul class="dropdown-menu" role="menu">
+          <li ><a class="icon ion-person"  [routerLink]="['/profile', currentUser.username]" routerLinkActive="active"> 信息</a></li>
+          <li ><a class="icon ion-settings" routerLink="/settings" routerLinkActive="active">&nbsp;设置</a></li>
+          <li><a class="icon ion-power" (click)="logout()">&nbsp;退出</a></li>
+        </ul>
       </li>
 
     </ul>
 
   </div>
 </nav>
+

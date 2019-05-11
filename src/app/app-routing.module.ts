@@ -7,6 +7,14 @@ const routes: Routes = [
     loadChildren: './settings/settings.module#SettingsModule'
   },
   {
+    path: 'mycourses',
+    loadChildren: './mycourses/mycourses.module#MycoursesModule'
+  },
+  {
+    path: 'mycourses/course',
+    loadChildren: './course/course.module#CourseModule'
+  },
+  {
     path: 'profile',
     loadChildren: './profile/profile.module#ProfileModule'
   },
