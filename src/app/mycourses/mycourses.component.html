@@ -1,0 +1,70 @@
+<div class="mycourses-page">
+
+  <div class="container">
+
+      <div class="row">
+
+        <div class="col-sm-3">
+          <ul class="mycourses">
+            <span *ngFor="let mycourse of courseList">
+              <li *ngIf="mycourse.pid == 0" [class.selected]="mycourse.cid == selectcourse.cid" (click)="onSelect(mycourse)">
+                <span class="badge">L{{ mycourse.cid }}</span>{{ mycourse.cname }}
+              </li>
+            </span>
+          </ul>
+        </div>
+
+        <div class="col-sm-6">
+          <div *ngIf="selectcourse">
+            <span *ngFor="let mycourse of courseList">
+              <div style="height: 80px" *ngIf="mycourse.pid == selectcourse.cid">
+                <a [routerLink]="['/mycourses', 'course',currentUser.username]" [queryParams]="{ id:mycourse.cid, pid:mycourse.pid}">
+                  <h5>{{ mycourse.cname }}</h5>
+                </a>
+                <div>{{ mycourse.cdes }}</div>
+              </div>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-3"  style="text-align:center;margin-right:-20px" >
+          <h5>全勤奖</h5>
+          （完成所有主修课小结打卡）
+          <br>
+          <br>
+          <br>
+          <div class="fakeimg">图像</div>
+          <br>
+          <br>
+          <br>
+          <br>
+          <p>小米指尖积木 + Richer老师签名证书</p>
+          <br>
+          <h5>学习进度</h5>
+          <table class="table table-bordered" *ngIf="selectcourse">
+            <tbody *ngFor="let mycourse of childcourses; let i = index">
+            <tr *ngIf="i % 2 == 0">
+              <td>
+                <p>{{ mycourse.cname.substr(0,3) }}</p>
+                <i class="icon ion-locked"></i>&nbsp;
+                <i class="icon ion-locked"></i>&nbsp;
+                <i class="icon ion-locked"></i>&nbsp;
+              </td>
+              <td>
+                <p>{{ i < childcourses.length - 1 ? childcourses[i + 1].cname.substr(0,3) : "" }}</p>
+                <i class="icon ion-locked" *ngIf="i < childcourses.length - 1"></i>&nbsp;
+                <i class="icon ion-locked" *ngIf="i < childcourses.length - 1"></i>&nbsp;
+                <i class="icon ion-locked" *ngIf="i < childcourses.length - 1"></i>&nbsp;
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+
+  </div>
+
+</div>
+
+
