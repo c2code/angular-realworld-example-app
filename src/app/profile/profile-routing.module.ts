@@ -4,6 +4,7 @@ import { ProfileArticlesComponent } from './profile-articles.component';
 import { ProfileFavoritesComponent } from './profile-favorites.component';
 import { ProfileResolver } from './profile-resolver.service';
 import { ProfileComponent } from './profile.component';
+import {AuthGuard} from "../core/services/auth-guard.service";
 
 
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
         path: 'favorites',
         component: ProfileFavoritesComponent
       }
-    ]
+    ],
+    canActivate: [AuthGuard]
   }
 ];
 

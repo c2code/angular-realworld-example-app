@@ -1,0 +1,35 @@
+<div class="admin-page">
+
+  <div class="container">
+
+      <div class="row">
+
+        <div class="col-sm-2">
+
+          <div class="panel panel-success">
+
+            <div class="panel-body" style="height: 770px;">
+              <ul class="nav nav-pills nav-stacked">
+                <li><a [routerLink]="['/admin', currentUser.username, 'manager']">课程管理</a></li>
+                <li><a [routerLink]="['/admin', currentUser.username, 'add']">课程添加</a></li>
+                <li><a [routerLink]="['/admin', currentUser.username, 'upload']">上传课件</a></li>
+                <li><a [routerLink]="['/admin', currentUser.username, 'rights']">用户授权</a></li>
+                <li><a [routerLink]="['/admin', currentUser.username, 'comment']">作业点评</a></li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-sm-10" style="margin-right:-20px" >
+
+          <router-outlet></router-outlet>
+
+        </div>
+
+      </div>
+
+  </div>
+
+</div>

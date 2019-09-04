@@ -7,8 +7,6 @@ import {User} from '../core/models/user.model'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { tap } from 'rxjs/operators';
-
 @Component({
   selector: 'app-mycourses-page',
   templateUrl: './mycourses.component.html',

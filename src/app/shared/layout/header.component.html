@@ -29,6 +29,7 @@
     <ul *appShowAuthed="true"
       class="nav navbar-nav pull-xs-right">
 
+
       <li class="nav-item">
         <a class="nav-link"
           routerLink="/"
@@ -50,7 +51,7 @@
 
       <li class="nav-item">
         <a class="nav-link"
-          [routerLink]="['/profile', currentUser.username]"
+          [routerLink]="['/homework', currentUser.username]"
           routerLinkActive="active">
           <i class="ion-clipboard"></i>
           我的作业
@@ -58,15 +59,24 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link"
-          href="http://47.104.75.28/">
+        <a target="_blank" class="nav-link"
+          href="http://localhost:8601?user={{currentUser.username}}&&cid=0&&title=自由创作">
           <i class="ion-compose"></i>&nbsp;自由创作
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="currentUser.username == 'admin'">
+        <a class="nav-link"
+          [routerLink]="['/admin', currentUser.username]"
+          routerLinkActive="active">
+          <i class="icon ion-gear-a"></i>
+          后台管理
         </a>
       </li>
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown">
-          <img [src]="currentUser.image" *ngIf="currentUser.image" class="user-pic" />
+          <img [src]="currentUser.image" *ngIf="currentUser.image" class="user-pic"/>
           {{ currentUser.username }}
         </a>
         <ul class="dropdown-menu" role="menu">

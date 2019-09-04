@@ -12,7 +12,6 @@ import {
 } from './shared';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
-import { CourseComponent } from './course/course.component';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
