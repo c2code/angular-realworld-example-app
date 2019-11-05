@@ -7,7 +7,7 @@ import {User} from "../core/models/user.model";
 
 @Component({
   selector: 'app-course-manager',
-  templateUrl: 'course-manager.component.html',
+  templateUrl: 'manager-course.component.html',
   styleUrls: ['./admin.component.css']
 })
 export class CourseManagerComponent implements OnInit {
