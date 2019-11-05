@@ -8,7 +8,10 @@ import {CourseAddComponent} from "./course-add.component";
 import {CourseUploadComponent} from "./course-upload.component";
 import {UserRightsComponent} from "./user-rights.component";
 import {HomeworkCommentComponent} from "./homework-comment.component";
-import {CourseManagerComponent} from "./manager-course.component";
+import {ManagerCourseComponent} from "./manager-course.component";
+import {ManagerTeacherComponent} from "./manager-teacher.component"
+import {ManagerStudentComponent} from "./manager-student.component"
+import {ManagerHomeworkComponent} from "./manager-homework.component"
 
 const routes: Routes = [
   {
@@ -18,23 +21,35 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: CourseManagerComponent
+        component: ManagerCourseComponent
       },
       {
-        path: 'manager',
-        component: CourseManagerComponent
+        path: 'm_course',
+        component: ManagerCourseComponent
       },
       {
-        path: 'modify',
+        path: 'modify_course',
         component: CourseModifyComponent
       },
       {
-        path: 'add',
+        path: 'add_course',
         component: CourseAddComponent
       },
       {
         path: 'upload',
         component: CourseUploadComponent
+      },
+      {
+        path: 'm_teacher',
+        component: ManagerTeacherComponent
+      },
+      {
+        path: 'm_student',
+        component: ManagerStudentComponent
+      },
+      {
+        path: 'm_homework',
+        component: ManagerHomeworkComponent
       },
       {
         path: 'rights',

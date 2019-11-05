@@ -10,7 +10,7 @@ import {User} from "../core/models/user.model";
   templateUrl: 'manager-course.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class CourseManagerComponent implements OnInit {
+export class ManagerCourseComponent implements OnInit {
 
     constructor(
     private route: ActivatedRoute,
@@ -61,11 +61,11 @@ export class CourseManagerComponent implements OnInit {
   }
 
   onModify(fid: number,sid:number,tid:number,cid:number):void {
-    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/modify?fid='+fid+'&sid='+sid+'&tid='+tid+'&cid='+cid);
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/modify_course?fid='+fid+'&sid='+sid+'&tid='+tid+'&cid='+cid);
   }
 
   onAdd(fid: number,sid:number,tid:number,cid:number):void {
-    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/add?fid='+fid+'&sid='+sid+'&tid='+tid+'&cid='+cid);
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/add_course?fid='+fid+'&sid='+sid+'&tid='+tid+'&cid='+cid);
   }
 
   onDelete(fid: number,sid:number,tid:number,cid:number):void {

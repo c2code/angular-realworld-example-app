@@ -8,7 +8,10 @@ import { CourseAddComponent } from './course-add.component';
 import { CourseUploadComponent } from './course-upload.component';
 import { UserRightsComponent } from './user-rights.component';
 import { HomeworkCommentComponent } from './homework-comment.component';
-import { CourseManagerComponent } from './manager-course.component';
+import { ManagerCourseComponent } from './manager-course.component';
+import { ManagerTeacherComponent } from './manager-teacher.component';
+import { ManagerStudentComponent } from './manager-student.component';
+import { ManagerHomeworkComponent } from './manager-homework.component';
 
 @NgModule({
   imports: [
@@ -22,7 +25,10 @@ import { CourseManagerComponent } from './manager-course.component';
     CourseUploadComponent,
     UserRightsComponent,
     HomeworkCommentComponent,
-    CourseManagerComponent
+    ManagerCourseComponent,
+    ManagerTeacherComponent,
+    ManagerStudentComponent,
+    ManagerHomeworkComponent
   ]
 })
 export class AdminModule { }

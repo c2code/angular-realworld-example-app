@@ -1,48 +1,24 @@
 <ul class="easyui-tree">
 
-  <span *ngFor="let mycourse of courseList">
-    <li *ngIf="mycourse.pid == 0">
 
-      <span [class.selected]="mycourse.cid == selectCourse.cid" (click)="onSelect(mycourse)">{{mycourse.cname}}</span>
-      <button type="button" class="btn btn-link" (click)="onModify(0,0,0,mycourse.cid)">修改</button>
-      <button type="button" class="btn btn-link" (click)="onAdd(0,0,0,0)">添加</button>
-      <button type="button" class="btn btn-link">删除</button>
 
-      <span *ngFor="let seconddir of courseList">
-        <ul *ngIf="seconddir.pid == mycourse.cid && (mycourse.cid == selectCourse.cid)">
-          <li>
-            <span>{{seconddir.cname}}</span>
-            <button type="button" class="btn btn-link" (click)="onModify(mycourse.cid,0,0,seconddir.cid)">修改</button>
-            <button type="button" class="btn btn-link" (click)="onAdd(mycourse.cid,0,0,0)">添加</button>
-            <button type="button" class="btn btn-link">删除</button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th  width="10%">编号</th>
+        <th>课程名称</th>
+        <th colspan="2" width="10%">操作</th>
+      </tr>
+    </thead>
 
-            <span *ngFor="let thirddir of courseList">
-              <ul *ngIf="thirddir.pid == seconddir.cid">
-                <li>
-                  <span>{{thirddir.cname}}</span>
-                  <button type="button" class="btn btn-link" (click)="onModify(mycourse.cid,seconddir.cid,0,thirddir.cid)">修改</button>
-                  <button type="button" class="btn btn-link" (click)="onAdd(mycourse.cid,seconddir.cid,0,0)">添加</button>
-                  <button type="button" class="btn btn-link">删除</button>
-                </li>
+    <tbody>
+        <tr *ngFor="let mycourse of courseList">
+          <td *ngIf="mycourse.pid == 0">{{mycourse.cid}}</td>
+          <td *ngIf="mycourse.pid == 0">L{{mycourse.cid}} {{mycourse.cname}}</td>
+          <td *ngIf="mycourse.pid == 0" (click)="onAdd(0,0,0,mycourse.cid)">管理 <i class="icon ion-compose"></i></td>
+        </tr>
+    </tbody>
 
-                <span *ngFor="let forthdir of courseList">
-                  <ul *ngIf="forthdir.pid == thirddir.cid">
-                    <li>
-                      <span>{{forthdir.cname}}</span>
-                      <button type="button" class="btn btn-link" (click)="onModify(mycourse.cid,seconddir.cid,thirddir.cid,forthdir.cid)">修改</button>
-                      <button type="button" class="btn btn-link" (click)="onAdd(mycourse.cid,seconddir.cid,thirddir.cid,0)">添加</button>
-                      <button type="button" class="btn btn-link">删除</button>
-                    </li>
-                  </ul>
-                </span>
-              </ul>
-            </span>
-
-          </li>
-        </ul>
-      </span>
-
-    </li>
-  </span>
+  </table>
 
 </ul>
