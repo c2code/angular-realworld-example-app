@@ -8,7 +8,7 @@ import {CourseAddComponent} from "./course-add.component";
 import {CourseUploadComponent} from "./course-upload.component";
 import {UserRightsComponent} from "./user-rights.component";
 import {HomeworkCommentComponent} from "./homework-comment.component";
-import {CourseManagerComponent} from "./course-manager.component";
+import {CourseManagerComponent} from "./manager-course.component";
 
 const routes: Routes = [
   {
