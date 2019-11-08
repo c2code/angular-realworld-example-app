@@ -3,7 +3,7 @@
   <div class="panel panel-success">
     <div class="panel-heading">
       <h3 class="panel-title">
-        课程分类
+        L{{selectCourse.cid}} {{selectCourse.cname}} <i class="icon ion-wrench"></i>
         <div class="btn-group btn-group-xs" style="float:right;">
           <button type="button" class="btn btn-default">
             添加 <i class="icon ion-ios-plus-outline"></i>
@@ -18,17 +18,17 @@
       <tr>
         <th  width="10%">编号</th>
         <th>课程名称</th>
-        <th width="15%" >操作</th>
+        <th width="15%">操作</th>
       </tr>
     </thead>
 
     <tbody>
         <tr *ngFor="let mycourse of courseList">
-          <td *ngIf="mycourse.pid == 0">{{mycourse.cid}}</td>
-          <td *ngIf="mycourse.pid == 0">L{{mycourse.cid}} {{mycourse.cname}}</td>
-          <td *ngIf="mycourse.pid == 0">
-            <button type="button" class="btn btn-link btn-xs" (click)="onModify(0,0,0,mycourse.cid)">编辑</button>
-            <button type="button" class="btn btn-link btn-xs" (click)="onManager(mycourse.cid)">管理</button>
+          <td *ngIf="mycourse.pid == parentId">{{mycourse.cid}}</td>
+          <td *ngIf="mycourse.pid == parentId">{{mycourse.cname}}</td>
+          <td *ngIf="mycourse.pid == parentId">
+              <button type="button" class="btn btn-link btn-xs" (click)="onModify(selectCourse.cid,0,0,mycourse.cid)">编辑</button>
+              <button type="button" class="btn btn-link btn-xs" (click)="onManager(mycourse.cid)">管理</button>
           </td>
         </tr>
     </tbody>

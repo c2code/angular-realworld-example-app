@@ -26,6 +26,11 @@ export class CourseModifyComponent implements OnInit {
   secondId:  number;
   thirdId:   number;
   currentId: number;
+  firstname: string = "";
+  secondname: string = "";
+  thirdname: string = "";
+
+  mypath: string = "";
 
   ngOnInit() {
 
@@ -49,10 +54,43 @@ export class CourseModifyComponent implements OnInit {
     this.populateCourses().subscribe(_ => {;
       //获取当前要修改课程全部信息
       for (let tmp of this.courseList ) {
-        if ( tmp.cid == this.currentId ) {
+        if (tmp.cid == this.currentId) {
           this.currentCourse = tmp;
-          break;
+          continue;
         }
+
+        if ( tmp.cid == this.firstId ) {
+          this.firstname = tmp.cname;
+          continue;
+        }
+        if ( tmp.cid == this.secondId ) {
+          this.secondname = tmp.cname;
+          continue;
+        }
+        if ( tmp.cid == this.thirdId ) {
+          this.thirdname = tmp.cname;
+          continue;
+        }
+      }
+
+      if (this.firstname != "") {
+        this.mypath = "/ L" +this.firstId + " " + this.firstname;
+      }
+
+      if (this.secondname != "") {
+        this.mypath = this.mypath + " / " + this.secondname;
+      }
+
+      if (this.thirdname != "") {
+        this.mypath = this.mypath + " / " + this.thirdname;
+      }
+
+      if (this.firstname != "")
+      {
+        this.mypath = this.mypath + " / " + this.currentCourse.cname;
+      } else
+      {
+        this.mypath = "/ L" + this.currentCourse.cid + " " + this.currentCourse.cname;
       }
 
     });

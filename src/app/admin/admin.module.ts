@@ -12,6 +12,7 @@ import { ManagerCourseComponent } from './manager-course.component';
 import { ManagerTeacherComponent } from './manager-teacher.component';
 import { ManagerStudentComponent } from './manager-student.component';
 import { ManagerHomeworkComponent } from './manager-homework.component';
+import { ManagerCourse2Component } from './manager-course2/manager-course2.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { ManagerHomeworkComponent } from './manager-homework.component';
     ManagerCourseComponent,
     ManagerTeacherComponent,
     ManagerStudentComponent,
-    ManagerHomeworkComponent
+    ManagerHomeworkComponent,
+    ManagerCourse2Component
   ]
 })
 export class AdminModule { }
