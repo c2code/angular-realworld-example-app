@@ -113,4 +113,16 @@ export class CourseModifyComponent implements OnInit {
 
   }
 
+  onReturn(){
+    if (this.firstname == "") {
+      this.router.navigateByUrl('/admin/'+this.currentUser.username+'/m_course');
+    } else if(this.secondname == "") {
+      this.router.navigateByUrl('/admin/' + this.currentUser.username + '/m_course2?cid=' + this.currentCourse.pid);
+    }else if(this.thirdname == "") {
+      this.router.navigateByUrl('/admin/' + this.currentUser.username + '/m_course3?cid=' + this.currentCourse.pid + "&pid=" + this.firstId);
+    }else {
+      this.router.navigateByUrl('/admin/' + this.currentUser.username + '/m_course4?cid=' + this.currentCourse.pid + "&pid=" + this.secondId + "&ppid=" + this.firstId);
+    }
+  }
+
 }

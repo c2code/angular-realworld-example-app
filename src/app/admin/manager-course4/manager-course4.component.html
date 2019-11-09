@@ -4,9 +4,16 @@
     <div class="panel-heading">
       <h3 class="panel-title">
         <a [routerLink]="['/admin', currentUser.username,'m_course']">
-          L{{selectCourse.cid}} {{selectCourse.cname}}
+          L{{ppparentCourse.cid}} {{ppparentCourse.cname}}
+        </a>/
+        <a [routerLink]="['/admin', currentUser.username,'m_course2']" [queryParams]="{ cid:pparentId }">
+          {{pparentCourse.cname}}
+        </a>/
+        <a [routerLink]="['/admin', currentUser.username,'m_course3']" [queryParams]="{ cid:pparentId,pid:ppparentId,ppid:0 }">
+          {{parentCourse.cname}}
         </a>
         <i class="icon ion-wrench"></i>
+
         <div class="btn-group btn-group-xs" style="float:right;">
           <button type="button" class="btn btn-default">
             添加 <i class="icon ion-ios-plus-outline"></i>
@@ -30,8 +37,7 @@
           <td *ngIf="mycourse.pid == parentId">{{mycourse.cid}}</td>
           <td *ngIf="mycourse.pid == parentId">{{mycourse.cname}}</td>
           <td *ngIf="mycourse.pid == parentId">
-              <button type="button" class="btn btn-link btn-xs" (click)="onModify(selectCourse.cid,0,0,mycourse.cid)">编辑</button>
-              <button type="button" class="btn btn-link btn-xs" (click)="onManager(mycourse.cid)">管理</button>
+              <button type="button" class="btn btn-link btn-xs" (click)="onModify(ppparentId,pparentId,parentId,mycourse.cid)">编辑</button>
           </td>
         </tr>
     </tbody>

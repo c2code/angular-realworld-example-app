@@ -10,6 +10,8 @@ import {UserRightsComponent} from "./user-rights.component";
 import {HomeworkCommentComponent} from "./homework-comment.component";
 import {ManagerCourseComponent} from "./manager-course.component";
 import {ManagerCourse2Component} from "./manager-course2/manager-course2.component";
+import {ManagerCourse3Component} from "./manager-course3/manager-course3.component";
+import {ManagerCourse4Component} from "./manager-course4/manager-course4.component";
 import {ManagerTeacherComponent} from "./manager-teacher.component"
 import {ManagerStudentComponent} from "./manager-student.component"
 import {ManagerHomeworkComponent} from "./manager-homework.component"
@@ -31,6 +33,14 @@ const routes: Routes = [
       {
         path: 'm_course2',
         component: ManagerCourse2Component
+      },
+      {
+        path: 'm_course3',
+        component: ManagerCourse3Component
+      },
+      {
+        path: 'm_course4',
+        component: ManagerCourse4Component
       },
       {
         path: 'modify_course',
