@@ -6,6 +6,10 @@ import {UserService} from "../../core/services/user.service";
 import {Course} from "../../core/models/mycourses.module";
 import {User} from "../../core/models/user.model";
 
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 @Component({
@@ -29,6 +33,7 @@ export class ManagerCourse3Component implements OnInit {
   pparentId: number = 0;
   url: SafeResourceUrl;
   media_url: string;
+  selectedFile: File;
 
   ngOnInit() {
     // Load the current user's data
@@ -91,5 +96,23 @@ export class ManagerCourse3Component implements OnInit {
   onManager(cid: number):void {
     this.router.navigateByUrl('/admin/'+this.currentUser.username+'/m_course4?cid='+cid + "&pid=" + this.parentId + "&ppid=" + this.pparentId);
   }
+
+  onUpload(cid: number):void { 
+    document.getElementById(cid.toString()).click(); 
+  }  
+  onFileChanged(event, cid: number) :void { 
+    this.selectedFile = event.target.files[0]; 
+    var formData: FormData = new FormData(); 
+    formData.append('upload', this.selectedFile, this.selectedFile.name); 
+    formData.append('cid', cid.toString());   
+    //alert(cid.toString()) 
+
+    this.mycoursesService.postuploadfile(formData)
+      .catch(error => Observable.throw(error)) 
+      .subscribe( 
+        data => console.log('success'), 
+        error => console.log(error) 
+      )
+     }
 
 }

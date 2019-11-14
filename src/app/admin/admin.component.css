@@ -46,4 +46,25 @@
     border-radius: 4px 0 0 4px;
 }
 
+.file {
+    position: relative;
+    display: inline-block;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.file input {
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.file:hover {
+    color: #742f1b;
+    text-decoration: none;
+}
+
 
