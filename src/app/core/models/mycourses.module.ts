@@ -4,5 +4,6 @@ export interface Course {
     pid   : number;
     cname : string;
     cdes  : string;
+    cvedio: string;
 }
 

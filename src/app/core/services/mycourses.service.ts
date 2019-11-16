@@ -35,4 +35,5 @@ export class MycoursesService {
     const request = req.clone({ setHeaders: headersConfig });
     return this.http.request(request);
   }
+
 }

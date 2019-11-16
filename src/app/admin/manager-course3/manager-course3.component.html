@@ -34,13 +34,13 @@
           <td *ngIf="mycourse.pid == parentId">{{mycourse.cid}}</td>
           <td *ngIf="mycourse.pid == parentId">{{mycourse.cname}}</td>
           <td *ngIf="mycourse.pid == parentId">
-            <video width="60%" height="50" controls controlslist="nodownload" oncontextmenu="return false;" style="outline-style: none" [src]="url">
+            <video width="60%" height="50" controls controlslist="nodownload" oncontextmenu="return false;" style="outline-style: none" [src]="url+mycourse.cid+'&file_name='+mycourse.cvedio | secure | async">
             </video>
           </td>
           <td *ngIf="mycourse.pid == parentId">
             <button type="button" class="btn btn-link btn-xs" (click)="onModify(pparentId,parentId,0,mycourse.cid)">编辑</button>
             <button type="button" class="btn btn-link btn-xs" (click)="onManager(mycourse.cid)">管理</button>
-            <button type="button" class="file btn btn-link btn-xs" (change)="onFileChanged($event,mycourse.cid)" (click)="onUpload(mycourse.cid)">上传课件
+            <button type="button" class="file btn btn-link btn-xs" (change)="onFileChanged($event,mycourse)" (click)="onUpload(mycourse.cid)">上传课件
               <input type="file" name="" id="{{mycourse.cid}}"mycourse.cid style="display:none;">
             </button>
           </td>

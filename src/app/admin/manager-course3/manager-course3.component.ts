@@ -9,6 +9,7 @@ import {User} from "../../core/models/user.model";
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import { environment } from '../../../environments/environment';
 
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
@@ -17,6 +18,7 @@ import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
   templateUrl: './manager-course3.component.html',
   styleUrls: ['../admin.component.css']
 })
+
 export class ManagerCourse3Component implements OnInit {
 
   constructor(private route: ActivatedRoute,
@@ -64,10 +66,12 @@ export class ManagerCourse3Component implements OnInit {
         }
       }
 
-      this.media_url = "../../../../courses_video/111/test.mp4";
-      this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.media_url);
-
+      //this.media_url = "../../../../courses_video/111/test.mp4";
+      //this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.media_url);
     });
+
+    this.url = `${environment.api_url}`+'/course/download?cid=';
+    //this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.media_url);
   }
 
   onSelect(course: Course): void {
@@ -100,11 +104,11 @@ export class ManagerCourse3Component implements OnInit {
   onUpload(cid: number):void { 
     document.getElementById(cid.toString()).click(); 
   }  
-  onFileChanged(event, cid: number) :void { 
+  onFileChanged(event, course: Course) :void { 
     this.selectedFile = event.target.files[0]; 
     var formData: FormData = new FormData(); 
     formData.append('upload', this.selectedFile, this.selectedFile.name); 
-    formData.append('cid', cid.toString());   
+    formData.append('cid', course.cid.toString());   
     //alert(cid.toString()) 
 
     this.mycoursesService.postuploadfile(formData)
@@ -113,6 +117,12 @@ export class ManagerCourse3Component implements OnInit {
         data => console.log('success'), 
         error => console.log(error) 
       )
+
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    alert("success!");
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/m_course3?cid='+ this.parentId + "&pid=" + this.pparentId+"&ppid=0");
+
      }
 
 }

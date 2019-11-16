@@ -31,6 +31,5 @@ import {
     UserService,
     MycoursesService
   ],
-  declarations: []
 })
 export class CoreModule { }

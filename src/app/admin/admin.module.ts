@@ -15,6 +15,7 @@ import { ManagerHomeworkComponent } from './manager-homework.component';
 import { ManagerCourse2Component } from './manager-course2/manager-course2.component';
 import { ManagerCourse3Component } from './manager-course3/manager-course3.component';
 import { ManagerCourse4Component } from './manager-course4/manager-course4.component';
+import { SecurePipe } from './secure.pipe';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import { ManagerCourse4Component } from './manager-course4/manager-course4.compo
     ManagerHomeworkComponent,
     ManagerCourse2Component,
     ManagerCourse3Component,
-    ManagerCourse4Component
+    ManagerCourse4Component,
+    SecurePipe
   ]
 })
 export class AdminModule { }
