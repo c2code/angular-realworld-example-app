@@ -4,6 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
  import 'rxjs/add/operator/map'; 
 import 'rxjs/add/operator/switchMap';
  import { JwtService } from '../core/services';
+import { Observable } from 'rxjs';
 
 @Pipe({
   name: 'secure'
@@ -17,15 +18,22 @@ export class SecurePipe implements PipeTransform {
 
     const token = this.jwtService.getToken(); 
 
-    const headersConfig = { 
-      'Content-Type': 'application/json', 
-      'Accept': '' 
-    }; 
+    return new Observable<string>((observer) => {
+      const {next, error} = observer;
+      this.http.get(url, {
+        headers: {'Content-Type': 'application/json', 'Authorization': `Token ${token}`},
+        responseType: 'blob'
+      }).subscribe(response => {
+        const reader = new FileReader();
+        reader.readAsDataURL(response);
+        reader.onloadend = function() {
+          observer.next(reader.result);
+        };
+      });
 
-    headersConfig['Authorization'] = `Token ${token}`; 
-    const req = new HttpRequest('GET', url); 
-    const request = req.clone({ setHeaders: headersConfig }); 
-    return this.http.request(request)
+      return {unsubscribe() {  }};
+    });
+
   }
 
 }
