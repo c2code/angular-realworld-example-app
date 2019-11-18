@@ -44,7 +44,7 @@
               <h1  class="panel-title">{{selectCourse.cname}}</h1>
               <br>
 
-              <video width="100%" height="460" controls controlslist="nodownload" oncontextmenu="return false;" style="outline-style: none" [src]="url">
+              <video width="100%" height="460" controls controlslist="nodownload" oncontextmenu="return false;" style="outline-style: none" [src]="url+selectCourse.cid+'&file_name='+selectCourse.cvedio | secure | async">
               </video>
 
               <br>

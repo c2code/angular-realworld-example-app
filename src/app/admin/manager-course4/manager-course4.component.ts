@@ -5,6 +5,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../core/services/user.service";
 import {Course} from "../../core/models/mycourses.module";
 import {User} from "../../core/models/user.model";
+import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
+
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-manager-course4',
@@ -26,6 +30,8 @@ export class ManagerCourse4Component implements OnInit {
   parentId: number = 0;
   pparentId: number = 0;
   ppparentId: number = 0;
+  selectedFile: File;
+  url: SafeResourceUrl;
 
   ngOnInit() {
     // Load the current user's data
@@ -62,6 +68,7 @@ export class ManagerCourse4Component implements OnInit {
       }
 
     });
+    this.url = `${environment.api_url}`+'/course/download?cid=';
   }
 
   onSelect(course: Course): void {
@@ -86,5 +93,29 @@ export class ManagerCourse4Component implements OnInit {
   onModify(fid: number,sid:number,tid:number,cid:number):void {
     this.router.navigateByUrl('/admin/'+this.currentUser.username+'/modify_course?fid='+fid+'&sid='+sid+'&tid='+tid+'&cid='+cid);
   }
+
+  onUpload(cid: number):void { 
+    document.getElementById(cid.toString()).click(); 
+  }  
+  onFileChanged(event, course: Course) :void { 
+    this.selectedFile = event.target.files[0]; 
+    var formData: FormData = new FormData(); 
+    formData.append('upload', this.selectedFile, this.selectedFile.name); 
+    formData.append('cid', course.cid.toString());   
+    //alert(cid.toString()) 
+
+    this.mycoursesService.postuploadfile(formData)
+      .catch(error => Observable.throw(error)) 
+      .subscribe( 
+        data => console.log('success'), 
+        error => console.log(error) 
+      )
+
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    alert("success!");
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/m_course4?cid='+ this.parentId + "&pid=" + this.pparentId+"&ppid=" + this.ppparentId);
+
+     }
 
 }

@@ -6,6 +6,7 @@ import {MycoursesService} from "../core/services/mycourses.service";
 import {User} from '../core/models/user.model'
 
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import { environment } from '../../environments/environment';
 
 
 
@@ -69,9 +70,9 @@ export class CourseComponent implements OnInit {
       }
     }
 
-    this.media_url = "../../../courses_video/" + this.selectCourse.cid + "/test.mp4";
-    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.media_url);
-    //"../../../courses_video/111/test.mp4"
+    //this.media_url = "../../../courses_video/" + this.selectCourse.cid + "/test.mp4";
+    //this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.media_url);
+    this.url = `${environment.api_url}`+'/course/download?cid=';
   }
 
   populateCourses() {
