@@ -36,4 +36,8 @@ export class MycoursesService {
     return this.http.request(request);
   }
 
+  modifycourse(course: Course): Observable<any> {
+    return this.apiService.post('/course/modify', course)
+  }
+
 }

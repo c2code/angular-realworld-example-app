@@ -5,6 +5,10 @@ import {UserService} from "../core/services/user.service";
 import {Course} from "../core/models/mycourses.module";
 import {User} from "../core/models/user.model";
 
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+
 @Component({
   selector: 'app-course-modify',
   templateUrl: 'course-modify.component.html',
@@ -111,6 +115,22 @@ export class CourseModifyComponent implements OnInit {
         throw error;
       });
 
+  }
+
+  onClickSubmit(name, desc){
+    this.currentCourse.cname = name
+    this.currentCourse.cdes = desc
+    this.mycoursesService.modifycourse(this.currentCourse)
+      .catch(error => Observable.throw(error)) 
+      .subscribe( 
+        data => console.log('success'), 
+        error => console.log(error) 
+      )
+    
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    alert("success!")
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/modify_course?fid='+this.firstId+'&sid='+this.secondId+'&tid='+this.thirdId+'&cid='+this.currentId);
   }
 
   onReturn(){
