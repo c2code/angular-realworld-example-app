@@ -4,7 +4,7 @@
     <div class="panel-heading">
       <h3 class="panel-title">
         <a [routerLink]="['/admin', currentUser.username,'m_course']">
-          L{{ppparentCourse.cid}} {{ppparentCourse.cname}}
+          {{ppparentCourse.clevel}} {{ppparentCourse.cname}}
         </a>/
         <a [routerLink]="['/admin', currentUser.username,'m_course2']" [queryParams]="{ cid:pparentId }">
           {{pparentCourse.cname}}

@@ -120,13 +120,21 @@ export class CourseModifyComponent implements OnInit {
   onClickSubmit(name, desc){
     this.currentCourse.cname = name
     this.currentCourse.cdes = desc
+    if (this.currentCourse.clevel == "") {
+      if (this.firstId == 0) {
+        this.currentCourse.clevel = "L" + this.currentId.toString()
+      } else {
+        this.currentCourse.clevel = "L" + this.firstId.toString()
+      }
+
+    }
     this.mycoursesService.modifycourse(this.currentCourse)
       .catch(error => Observable.throw(error)) 
       .subscribe( 
         data => console.log('success'), 
         error => console.log(error) 
       )
-    
+
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     alert("success!")

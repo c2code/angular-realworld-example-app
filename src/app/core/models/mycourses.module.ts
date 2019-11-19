@@ -5,5 +5,6 @@ export interface Course {
     cname : string;
     cdes  : string;
     cvedio: string;
+    clevel: string;
 }
 

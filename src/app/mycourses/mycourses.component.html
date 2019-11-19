@@ -8,7 +8,7 @@
           <ul class="mycourses">
             <span *ngFor="let mycourse of courseList">
               <li *ngIf="mycourse.pid == 0" [class.selected]="mycourse.cid == selectcourse.cid" (click)="onSelect(mycourse)">
-                <span class="badge">L{{ mycourse.cid }}</span>{{ mycourse.cname }}
+                <span class="badge">{{ mycourse.clevel }}</span>{{ mycourse.cname }}
               </li>
             </span>
           </ul>
