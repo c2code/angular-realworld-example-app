@@ -12,7 +12,8 @@ import {
   ProfilesService,
   TagsService,
   UserService,
-  MycoursesService
+  MycoursesService,
+  ClassroomService
 } from './services';
 
 @NgModule({
@@ -29,7 +30,8 @@ import {
     ProfilesService,
     TagsService,
     UserService,
-    MycoursesService
+    MycoursesService,
+    ClassroomService
   ],
 })
 export class CoreModule { }

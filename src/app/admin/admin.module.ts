@@ -15,6 +15,8 @@ import { ManagerCourse3Component } from './manager-course3/manager-course3.compo
 import { ManagerCourse4Component } from './manager-course4/manager-course4.component';
 import { SecurePipe } from './secure.pipe';
 import { ManagerClassroomComponent } from './manager-classroom/manager-classroom.component';
+import { ClassroomListComponent } from './manager-classroom/classroom-list.component';
+import { AddClassroomComponent } from './manager-classroom/add-classroom.component';
 
 @NgModule({
   imports: [
@@ -34,7 +36,9 @@ import { ManagerClassroomComponent } from './manager-classroom/manager-classroom
     ManagerCourse3Component,
     ManagerCourse4Component,
     SecurePipe,
-    ManagerClassroomComponent
+    ManagerClassroomComponent,
+    ClassroomListComponent,
+    AddClassroomComponent
   ]
 })
 export class AdminModule { }

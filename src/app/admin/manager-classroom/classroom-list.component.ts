@@ -1,31 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 
+import {ClassroomService} from "../../core/services/classroom.service";
 import {MycoursesService} from "../../core/services/mycourses.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../core/services/user.service";
-import {Course} from "../../core/models/mycourses.module";
 import {User} from "../../core/models/user.model";
-
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
+import {Course, Classroom} from "../../core/models/mycourses.module";
 
 @Component({
-  selector: 'app-manager-classroom',
-  templateUrl: './manager-classroom.component.html',
+  selector: 'app-classroom-list',
+  templateUrl: 'classroom-list.component.html',
   styleUrls: ['../admin.component.css']
 })
-export class ManagerClassroomComponent implements OnInit {
+export class ClassroomListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
+    private classroomService:ClassroomService,
     private mycoursesService:MycoursesService
   ) { }
 
-  courseList: Course[]
   currentUser: User;
+  classroomList: Classroom[]
+  courseId: number;
+  courseList: Course[];
+  course: Course;
 
   ngOnInit() {
 
@@ -37,10 +38,37 @@ export class ManagerClassroomComponent implements OnInit {
       }
     );
 
-    //初始化章节课程
-    this.populateCourses().subscribe(_ => {;
+    //获取页面参数
+    this.route.queryParams.subscribe(params=> {
+      this.courseId = params['cid'];
     });
 
+    //初始化班级
+    this.populateClassrooms(this.courseId).subscribe(_ => {;
+    });
+
+    //初始化章节课程
+    this.populateCourses().subscribe(_ => {;
+      //获取当前要修改课程全部信息
+      for (let tmp of this.courseList ) {
+        if ( tmp.cid == this.courseId ) {
+          this.course = tmp;
+          break;
+        }
+      }
+    });
+
+  }
+
+  populateClassrooms(cid: number) {
+    return this.classroomService.getclassrooms(cid*1)
+      .map((classrooms) => {
+        this.classroomList = classrooms;
+      })
+      .catch((error) => {
+        console.log('error ' + error);
+        throw error;
+      });
 
   }
 
@@ -56,6 +84,9 @@ export class ManagerClassroomComponent implements OnInit {
 
   }
 
+  onAdd():void {
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/add_classroom?cid=' + this.courseId);
+  }
 
   onManager(cid: number):void {
     this.router.navigateByUrl('/admin/'+this.currentUser.username+'/list_classroom?cid='+cid);

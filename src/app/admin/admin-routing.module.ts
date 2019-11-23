@@ -14,6 +14,8 @@ import {ManagerTeacherComponent} from "./manager-teacher.component"
 import {ManagerStudentComponent} from "./manager-student.component"
 import {ManagerHomeworkComponent} from "./manager-homework.component"
 import { ManagerClassroomComponent } from './manager-classroom/manager-classroom.component';
+import {ClassroomListComponent} from './manager-classroom/classroom-list.component'
+import {AddClassroomComponent} from './manager-classroom/add-classroom.component'
 
 const routes: Routes = [
   {
@@ -52,6 +54,14 @@ const routes: Routes = [
       {
         path: 'm_classroom',
         component: ManagerClassroomComponent
+      },
+      {
+        path: 'add_classroom',
+        component: AddClassroomComponent
+      },
+      {
+        path: 'list_classroom',
+        component: ClassroomListComponent
       },
       {
         path: 'm_teacher',
