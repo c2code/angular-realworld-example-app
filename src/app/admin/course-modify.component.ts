@@ -26,6 +26,9 @@ export class CourseModifyComponent implements OnInit {
   courseList:    Course[];
   currentUser:   User;
   currentCourse: Course;
+  firstCourse:   Course;
+  secondCourse:  Course;
+  thirdCourse:   Course;
   firstId:   number;
   secondId:  number;
   thirdId:   number;
@@ -65,20 +68,23 @@ export class CourseModifyComponent implements OnInit {
 
         if ( tmp.cid == this.firstId ) {
           this.firstname = tmp.cname;
+          this.firstCourse = tmp;
           continue;
         }
         if ( tmp.cid == this.secondId ) {
           this.secondname = tmp.cname;
+          this.secondCourse = tmp;
           continue;
         }
         if ( tmp.cid == this.thirdId ) {
           this.thirdname = tmp.cname;
+          this.thirdCourse = tmp;
           continue;
         }
       }
 
       if (this.firstname != "") {
-        this.mypath = "/ L" +this.firstId + " " + this.firstname;
+        this.mypath = this.firstCourse.clevel + " " + this.firstname;
       }
 
       if (this.secondname != "") {
@@ -94,7 +100,7 @@ export class CourseModifyComponent implements OnInit {
         this.mypath = this.mypath + " / " + this.currentCourse.cname;
       } else
       {
-        this.mypath = "/ L" + this.currentCourse.cid + " " + this.currentCourse.cname;
+        this.mypath = this.currentCourse.clevel + " " + this.currentCourse.cname;
       }
 
     });

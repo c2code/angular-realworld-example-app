@@ -40,4 +40,12 @@ export class MycoursesService {
     return this.apiService.post('/course/modify', course)
   }
 
+  addcourse(course: Course): Observable<any> {
+    return this.apiService.post('/course/add', course)
+  }
+
+  deletecourse(course: Course): Observable<any> {
+    return this.apiService.post('/course/delete', course)
+  }
+
 }

@@ -5,9 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {AdminComponent} from "./admin.component";
 import {CourseModifyComponent} from "./course-modify.component";
 import {CourseAddComponent} from "./course-add.component";
-import {CourseUploadComponent} from "./course-upload.component";
 import {UserRightsComponent} from "./user-rights.component";
-import {HomeworkCommentComponent} from "./homework-comment.component";
 import {ManagerCourseComponent} from "./manager-course.component";
 import {ManagerCourse2Component} from "./manager-course2/manager-course2.component";
 import {ManagerCourse3Component} from "./manager-course3/manager-course3.component";
@@ -15,6 +13,7 @@ import {ManagerCourse4Component} from "./manager-course4/manager-course4.compone
 import {ManagerTeacherComponent} from "./manager-teacher.component"
 import {ManagerStudentComponent} from "./manager-student.component"
 import {ManagerHomeworkComponent} from "./manager-homework.component"
+import { ManagerClassroomComponent } from './manager-classroom/manager-classroom.component';
 
 const routes: Routes = [
   {
@@ -51,8 +50,8 @@ const routes: Routes = [
         component: CourseAddComponent
       },
       {
-        path: 'upload',
-        component: CourseUploadComponent
+        path: 'm_classroom',
+        component: ManagerClassroomComponent
       },
       {
         path: 'm_teacher',
@@ -69,10 +68,6 @@ const routes: Routes = [
       {
         path: 'rights',
         component: UserRightsComponent
-      },
-      {
-        path: 'comment',
-        component: HomeworkCommentComponent
       }
     ],
 

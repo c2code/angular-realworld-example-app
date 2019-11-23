@@ -11,7 +11,7 @@
         </a>
         <i class="icon ion-wrench"></i>
         <div class="btn-group btn-group-xs" style="float:right;">
-          <button type="button" class="btn btn-default">
+          <button type="button" class="btn btn-default" (click)="onAdd()">
             添加 <i class="icon ion-ios-plus-outline"></i>
           </button>
         </div>
@@ -25,7 +25,7 @@
         <th  width="10%">编号</th>
         <th>课程名称</th>
         <th width="20%">课件</th>
-        <th width="20%">操作</th>
+        <th width="25%">操作</th>
       </tr>
     </thead>
 
@@ -39,6 +39,7 @@
           </td>
           <td *ngIf="mycourse.pid == parentId">
             <button type="button" class="btn btn-link btn-xs" (click)="onModify(pparentId,parentId,0,mycourse.cid)">编辑</button>
+            <button type="button" class="btn btn-link btn-xs" (click)="onDelete(mycourse.cid)">删除</button>
             <button type="button" class="file btn btn-link btn-xs" (change)="onFileChanged($event,mycourse)" (click)="onUpload(mycourse.cid)">上传课件
               <input type="file" name="" id="{{mycourse.cid}}"mycourse.cid style="display:none;">
             </button>

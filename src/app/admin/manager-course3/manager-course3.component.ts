@@ -36,6 +36,7 @@ export class ManagerCourse3Component implements OnInit {
   url: SafeResourceUrl;
   media_url: string;
   selectedFile: File;
+  childCount:number;
 
   ngOnInit() {
     // Load the current user's data
@@ -104,6 +105,7 @@ export class ManagerCourse3Component implements OnInit {
   onUpload(cid: number):void { 
     document.getElementById(cid.toString()).click(); 
   }  
+
   onFileChanged(event, course: Course) :void { 
     this.selectedFile = event.target.files[0]; 
     var formData: FormData = new FormData(); 
@@ -124,5 +126,40 @@ export class ManagerCourse3Component implements OnInit {
     this.router.navigateByUrl('/admin/'+this.currentUser.username+'/m_course3?cid='+ this.parentId + "&pid=" + this.pparentId+"&ppid=0");
 
      }
+
+  onAdd():void {
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/add_course?pid=' + this.parentId + '&level=' + this.pparentCourse.clevel + '&fid=' + this.pparentId + '&sid=' + this.parentId);
+  }
+
+  onDelete(cid):void {
+    this.childCount = 0;
+    var i: number;
+    var course: Course;
+    for (i=0; i < this.courseList.length; i++) {
+      if (this.courseList[i].pid == cid ) {
+        this.childCount++
+      }
+      if (this.courseList[i].cid == cid ) {
+        course = this.courseList[i]
+      }
+    }
+
+    if (this.childCount > 0){
+      alert("失败：请先删除子课程！")
+      return
+    }
+
+    this.mycoursesService.deletecourse(course)
+      .catch(error => Observable.throw(error)) 
+      .subscribe( 
+        data => console.log('success'), 
+        error => console.log(error) 
+      )
+
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    alert("success!")
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/m_course3?cid='+ this.parentId + "&pid=" + this.pparentId+"&ppid=0");
+  }
 
 }
