@@ -17,6 +17,7 @@ import { SecurePipe } from './secure.pipe';
 import { ManagerClassroomComponent } from './manager-classroom/manager-classroom.component';
 import { ClassroomListComponent } from './manager-classroom/classroom-list.component';
 import { AddClassroomComponent } from './manager-classroom/add-classroom.component';
+import { ModifyClassroomComponent } from './manager-classroom/modify-classroom.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { AddClassroomComponent } from './manager-classroom/add-classroom.compone
     SecurePipe,
     ManagerClassroomComponent,
     ClassroomListComponent,
-    AddClassroomComponent
+    AddClassroomComponent,
+    ModifyClassroomComponent
   ]
 })
 export class AdminModule { }

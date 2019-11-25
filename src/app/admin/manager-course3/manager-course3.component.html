@@ -34,7 +34,7 @@
           <td *ngIf="mycourse.pid == parentId">{{mycourse.cid}}</td>
           <td *ngIf="mycourse.pid == parentId">{{mycourse.cname}}</td>
           <td *ngIf="mycourse.pid == parentId">
-            <video width="60%" height="50" controls controlslist="nodownload" oncontextmenu="return false;" style="outline-style: none" [src]="url+mycourse.cid+'&file_name='+mycourse.cvedio | secure | async">
+            <video width="60%" height="50" controls controlslist="nodownload" oncontextmenu="return false;" style="outline-style: none" [src]="url+mycourse.cid.toString()+'&file_name='+mycourse.cvedio | secure | async">
             </video>
           </td>
           <td *ngIf="mycourse.pid == parentId">
