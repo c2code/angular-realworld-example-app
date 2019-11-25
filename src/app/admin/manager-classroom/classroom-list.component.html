@@ -20,6 +20,7 @@
         <th>班级名称</th>
         <th>班级老师</th>
         <th>学员数量</th>
+        <th>开班时间</th>
         <th>状态</th>
         <th width="25%">操作</th>
       </tr>
@@ -31,11 +32,12 @@
           <td>{{classroom.rname}}</td>
           <td>{{classroom.tname}}</td>
           <td>{{classroom.stdnum}}</td>
+          <td>{{classroom.start}}</td>
           <td>{{classroom.rstatus}}</td>
           <td>
-            <button type="button" class="btn btn-link btn-xs" (click)="onModify()"><i class="icon ion-ios-compose-outline"></i> 编辑</button>
+            <button type="button" class="btn btn-link btn-xs" (click)="onModify(classroom.roomid)"><i class="icon ion-ios-compose-outline"></i> 编辑</button>
             <button type="button" class="btn btn-link btn-xs" (click)="onDelete()"><i class="icon ion-ios-plus-outline"></i> 教师</button>
-            <button type="button" class="btn btn-link btn-xs" (click)="onManager()"><i class="icon ion-ios-book-outline"></i> 学员</button>
+            <button type="button" class="btn btn-link btn-xs" (click)="onManager()"><i class="icon ion-ios-plus-outline"></i> 学员</button>
             <button type="button" class="btn btn-link btn-xs" (click)="onDelete()"><i class="icon ion-ios-minus-outline"></i> 删除</button>
           </td>
         </tr>

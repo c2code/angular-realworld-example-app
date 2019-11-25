@@ -26,6 +26,11 @@ export class ClassroomService {
       .pipe(map((data: {classroom: Classroom}) => data.classroom));
   }
 
+  getclassroom(rid): Observable<Classroom> {
+    return this.apiService.get('/classroom/?rid=' + rid)
+      .pipe(map((data: {classroom: Classroom}) => data.classroom));
+  }
+
   getclassrooms(cid): Observable<Classroom[]> {
     return this.apiService.post('/classroom/', {"cid":cid})
       .pipe(map((data: {classrooms: Classroom[]}) => data.classrooms));

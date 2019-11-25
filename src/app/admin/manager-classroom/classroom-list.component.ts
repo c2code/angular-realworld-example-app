@@ -92,4 +92,8 @@ export class ClassroomListComponent implements OnInit {
     this.router.navigateByUrl('/admin/'+this.currentUser.username+'/list_classroom?cid='+cid);
   }
 
+  onModify(roomid: number):void {
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/modify_classroom?rid=' + roomid);
+  }
+
 }
