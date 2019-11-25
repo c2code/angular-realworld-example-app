@@ -27,7 +27,7 @@ export class SecurePipe implements PipeTransform {
         const reader = new FileReader();
         reader.readAsDataURL(response);
         reader.onloadend = function() {
-          observer.next(reader.result);
+          observer.next(reader.result as string);
         };
       });
 
