@@ -45,7 +45,7 @@ export class ClassroomService {
   }
 
   deleteclassroom(classroom: Classroom): Observable<any> {
-    return this.apiService.post('/course/delete', classroom)
+    return this.apiService.post('/classroom/delete', classroom)
   }
 
 }

@@ -7,6 +7,8 @@ import {UserService} from "../../core/services/user.service";
 import {User} from "../../core/models/user.model";
 import {Course, Classroom} from "../../core/models/mycourses.module";
 
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-classroom-list',
   templateUrl: 'classroom-list.component.html',
@@ -94,6 +96,34 @@ export class ClassroomListComponent implements OnInit {
 
   onModify(roomid: number):void {
     this.router.navigateByUrl('/admin/'+this.currentUser.username+'/modify_classroom?rid=' + roomid);
+  }
+
+  onDelete(rid):void {
+    var i: number;
+    var classroom: Classroom;
+    for (i=0; i < this.classroomList.length; i++) {
+      if (this.classroomList[i].roomid == rid ) {
+        classroom = this.classroomList[i]
+        break;
+      }
+    }
+
+    if (classroom.stdnum > 0 || classroom.tid != 0){
+      alert("失败：请先移除全部学员和教师！")
+      return
+    }
+
+    this.classroomService.deleteclassroom(classroom)
+      .catch(error => Observable.throw(error)) 
+      .subscribe( 
+        data => console.log('success'), 
+        error => console.log(error) 
+      )
+
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    alert("success!")
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/list_classroom?cid=' + classroom.cid)
   }
 
 }
