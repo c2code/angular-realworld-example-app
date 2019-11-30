@@ -90,8 +90,16 @@ export class ClassroomListComponent implements OnInit {
     this.router.navigateByUrl('/admin/'+this.currentUser.username+'/add_classroom?cid=' + this.courseId);
   }
 
-  onManager(cid: number):void {
-    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/list_classroom?cid='+cid);
+  onManagerStudents(rid: number):void {
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/m_student?rid='+rid);
+  }
+
+  onAddTeacher(cid: number):void {
+
+  }
+
+  onReturn(){
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/m_classroom');
   }
 
   onModify(roomid: number):void {
@@ -108,8 +116,8 @@ export class ClassroomListComponent implements OnInit {
       }
     }
 
-    if (classroom.stdnum > 0 || classroom.tid != 0){
-      alert("失败：请先移除全部学员和教师！")
+    if (classroom.stdnum > 0){
+      alert("失败：请先移除全部学员!")
       return
     }
 

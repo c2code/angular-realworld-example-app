@@ -13,6 +13,8 @@ import { ManagerClassroomComponent } from './manager-classroom/manager-classroom
 import {ClassroomListComponent} from './manager-classroom/classroom-list.component'
 import {AddClassroomComponent} from './manager-classroom/add-classroom.component'
 import {ModifyClassroomComponent} from "./manager-classroom/modify-classroom.component";
+import {ManagerStudentComponent} from "./manager-student/manager-student.component"
+import {AddStudentComponent} from "./manager-student/add-student.component"
 
 const routes: Routes = [
   {
@@ -63,6 +65,14 @@ const routes: Routes = [
       {
         path: 'modify_classroom',
         component: ModifyClassroomComponent
+      },
+      {
+        path: 'm_student',
+        component: ManagerStudentComponent
+      },
+      {
+        path: 'add_student',
+        component: AddStudentComponent
       }
     ],
 

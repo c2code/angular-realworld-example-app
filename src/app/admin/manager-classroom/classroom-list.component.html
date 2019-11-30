@@ -5,8 +5,11 @@
       <h3 class="panel-title">
           {{course.clevel}} {{course.cname}} ---- 班级管理
         <div class="btn-group btn-group-xs" style="float:right;">
-          <button type="button" class="btn btn-default" (click)="onAdd()">
-            添加 <i class="icon ion-ios-plus-outline"></i>
+          <button type="button" class="btn btn-link btn-xs" (click)="onAdd()">
+            <i class="icon ion-ios-plus-outline"></i> 添加
+          </button>
+          <button type="button" class="btn btn-link btn-xs" (click)="onReturn()">
+            <i class="icon ion-ios-redo"></i> 返回
           </button>
         </div>
       </h3>
@@ -35,10 +38,10 @@
           <td>{{classroom.start}}</td>
           <td>{{classroom.rstatus}}</td>
           <td>
-            <button type="button" class="btn btn-link btn-xs" (click)="onModify(classroom.roomid)"><i class="icon ion-ios-compose-outline"></i> 编辑</button>
-            <button type="button" class="btn btn-link btn-xs" (click)="onDelete()"><i class="icon ion-ios-plus-outline"></i> 教师</button>
-            <button type="button" class="btn btn-link btn-xs" (click)="onManager()"><i class="icon ion-ios-plus-outline"></i> 学员</button>
-            <button type="button" class="btn btn-link btn-xs" (click)="onDelete(classroom.roomid)"><i class="icon ion-ios-minus-outline"></i> 删除</button>
+            <button type="button" class="btn btn-link btn-xs" (click)="onModify(classroom.roomid)">编辑</button>
+            <button type="button" class="btn btn-link btn-xs" (click)="onAddTeacher(classroom.roomid)">教师</button>
+            <button type="button" class="btn btn-link btn-xs" (click)="onManagerStudents(classroom.roomid)">学员</button>
+            <button type="button" class="btn btn-link btn-xs" (click)="onDelete(classroom.roomid)">删除</button>
           </td>
         </tr>
     </tbody>

@@ -10,7 +10,8 @@ import { environment } from '../../../environments/environment';
 
 
 //引用Course（课程）定义
-import {Course, Classroom} from "../../core/models/mycourses.module";
+import {Course, Classroom, Student, Teacher} from "../../core/models/mycourses.module";
+import {MyUser} from "../../core/models/user.model";
 
 
 @Injectable()
@@ -46,6 +47,55 @@ export class ClassroomService {
 
   deleteclassroom(classroom: Classroom): Observable<any> {
     return this.apiService.post('/classroom/delete', classroom)
+  }
+
+  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  getlaststudent(): Observable<Student> {
+    return this.apiService.get('/student/')
+      .pipe(map((data: {student: Student}) => data.student));
+  }
+
+  getstudents(rid): Observable<Student[]> {
+    return this.apiService.get('/student/?rid=' + rid)
+      .pipe(map((data: {students: Student[]}) => data.students));
+  }
+
+  addstudent(student): Observable<any> {
+    return this.apiService.post('/student/add', student)
+  }
+
+  deletestudent(student): Observable<any> {
+    return this.apiService.post('/student/delete', student)
+  }
+
+  getuserlist(name): Observable<MyUser[]> {
+    return this.apiService.get('/user/list?name=' + name)
+      .pipe(map((data: {users: MyUser[]}) => data.users));
+  }
+
+  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  getlastteacher(): Observable<Teacher> {
+    return this.apiService.get('/teacher/?tid=0')
+      .pipe(map((data: {teacher: Teacher}) => data.teacher));
+  }
+
+  getteachers(): Observable<Teacher[]> {
+    return this.apiService.get('/teacher/')
+      .pipe(map((data: {teachers: Teacher[]}) => data.teachers));
+  }
+
+  addteachers(teacher): Observable<any> {
+    return this.apiService.post('/teacher/add', teacher)
+  }
+
+  deleteteachers(teacher): Observable<any> {
+    return this.apiService.post('/teacher/delete', teacher)
+  }
+
+  modifyteachers(teacher, rid): Observable<any> {
+    return this.apiService.post('/teacher/modify?rid=' + rid, teacher)
   }
 
 }

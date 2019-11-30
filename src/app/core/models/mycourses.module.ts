@@ -45,7 +45,8 @@ export interface Teacher{
 	tid       :number
 	tstatus   :string
 	uid       :number
-	uname     :number
+	uname     :string
 	email     :string
 	phone     :string
+  rcount    :number
 }

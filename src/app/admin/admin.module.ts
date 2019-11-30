@@ -14,6 +14,8 @@ import { ManagerClassroomComponent } from './manager-classroom/manager-classroom
 import { ClassroomListComponent } from './manager-classroom/classroom-list.component';
 import { AddClassroomComponent } from './manager-classroom/add-classroom.component';
 import { ModifyClassroomComponent } from './manager-classroom/modify-classroom.component';
+import { ManagerStudentComponent } from './manager-student/manager-student.component';
+import { AddStudentComponent } from './manager-student/add-student.component';
 
 @NgModule({
   imports: [
@@ -32,7 +34,9 @@ import { ModifyClassroomComponent } from './manager-classroom/modify-classroom.c
     ManagerClassroomComponent,
     ClassroomListComponent,
     AddClassroomComponent,
-    ModifyClassroomComponent
+    ModifyClassroomComponent,
+    ManagerStudentComponent,
+    AddStudentComponent
   ]
 })
 export class AdminModule { }
