@@ -1,0 +1,54 @@
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <i class="icon ion-plus-circled"></i>添加教师：
+
+      <div class="btn-group btn-group-xs" style="float:right;">
+        <button type="button" class="btn btn-link btn-xs" (click)="onReturn()">
+          <i class="icon ion-ios-redo"></i> 返回
+        </button>
+      </div>
+
+    </h3>
+  </div>
+  <div class="panel-body">
+
+		<div class="col-lg-6">
+      <div class="input-group">
+        <input #user_name type="text" class="form-control" placeholder="用户名称，支持模糊查询">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" (click)="onQuery(user_name.value)">
+            查询
+          </button>
+        </span>
+      </div>
+    </div>
+
+	</div>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th  width="10%">编号</th>
+        <th>姓名</th>
+        <th>Email</th>
+        <th>电话</th>
+        <th width="10%">操作</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let myuser of userList">
+          <td>{{myuser.uid}}</td>
+          <td>{{myuser.username}}</td>
+          <td>{{myuser.email}}</td>
+          <td>{{myuser.phone}}</td>
+          <td>
+            <button type="button" class="btn btn-link btn-xs" (click)="onAddTeacher(myuser.uid)">添加</button>
+          </td>
+        </tr>
+    </tbody>
+
+</table>
+

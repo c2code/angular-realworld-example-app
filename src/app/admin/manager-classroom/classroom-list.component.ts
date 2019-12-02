@@ -94,8 +94,8 @@ export class ClassroomListComponent implements OnInit {
     this.router.navigateByUrl('/admin/'+this.currentUser.username+'/m_student?rid='+rid);
   }
 
-  onAddTeacher(cid: number):void {
-
+  onAddTeacher(rid: number):void {
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/modify_teacher?rid='+rid + '&cid=' + this.courseId);
   }
 
   onReturn(){

@@ -4,15 +4,15 @@ import {ClassroomService} from "../../core/services/classroom.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../core/services/user.service";
 import {User, MyUser} from "../../core/models/user.model";
-import {Student, Classroom} from "../../core/models/mycourses.module";
+import {Student, Classroom, Teacher} from "../../core/models/mycourses.module";
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-add-student',
-  templateUrl: 'add-student.component.html',
+  selector: 'app-add-teacher',
+  templateUrl: 'add-teacher.component.html',
   styleUrls: ['../admin.component.css']
 })
-export class AddStudentComponent implements OnInit {
+export class AddTeacherComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
@@ -21,15 +21,13 @@ export class AddStudentComponent implements OnInit {
     private classroomService:ClassroomService) { }
 
   currentUser: User;
-  classroom: Classroom;
-  roomId: number;
   userList: MyUser[];
-  laststudent: Student;
+  lastteacher: Teacher;
   myusername: string;
-  newsid:number;
+  newtid:number;
 
   ngOnInit() {
-    this.newsid = 1;
+    this.newtid = 1;
     // Load the current user's data
     this.userService.currentUser.subscribe(
       (userData: User) => {
@@ -38,16 +36,7 @@ export class AddStudentComponent implements OnInit {
       }
     );
 
-    //获取页面参数
-    this.route.queryParams.subscribe(params=> {
-      this.roomId = params['rid'];
-      this.myusername = params['name'];
-    });
-
-    this.populateClassroom(this.roomId).subscribe(_ => {;
-    });
-
-    this.populateLastSudent().subscribe(_ => {;
+    this.populateLastTeacher().subscribe(_ => {;
     });
 
     if (this.myusername != ""){
@@ -58,23 +47,11 @@ export class AddStudentComponent implements OnInit {
 
   }
 
-  populateClassroom(rid) {
-    return this.classroomService.getclassroom(rid*1)
-      .map((classroom) => {
-        this.classroom = classroom;
-      })
-      .catch((error) => {
-        console.log('error ' + error);
-        throw error;
-      });
-
-  }
-
-  populateLastSudent() {
-    return this.classroomService.getlaststudent()
-      .map((student) => {
-        this.laststudent = student;
-        this.newsid = this.laststudent.sid + 1
+  populateLastTeacher() {
+    return this.classroomService.getlastteacher()
+      .map((teacher) => {
+        this.lastteacher = teacher;
+        this.newtid = this.lastteacher.tid + 1
 
       })
       .catch((error) => {
@@ -102,28 +79,27 @@ export class AddStudentComponent implements OnInit {
       });
   }
 
-  onAddStudent(uid){
-    this.classroomService.addstudent({
-      "sid":this.newsid*1,
+  onAddTeacher(uid){
+    this.classroomService.addteacher({
+      "tid":this.newtid*1,
+      "tstatus":"",
       "uid":uid*1,
-      "rid":this.roomId*1,
       "uname":"",
       "email":"",
       "phoe":"",
-      "rname":""
+      "rcount":0
     })
       .catch(error => Observable.throw(error)) 
       .subscribe( 
         data => console.log('success'), 
-        error => alert("错误：该用户已经在其他班级！") 
+        error => console.log(error)
       )
 
     this.onReturn()
   }
 
   onReturn(){
-    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/m_student?rid='+ this.roomId)
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/m_teacher')
   }
-
 
 }

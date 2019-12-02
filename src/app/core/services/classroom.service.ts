@@ -81,16 +81,21 @@ export class ClassroomService {
       .pipe(map((data: {teacher: Teacher}) => data.teacher));
   }
 
+   getteacherbyname(name): Observable<Teacher[]> {
+    return this.apiService.get('/teacher/?name=' + name)
+      .pipe(map((data: {teachers: Teacher[]}) => data.teachers));
+  }
+
   getteachers(): Observable<Teacher[]> {
     return this.apiService.get('/teacher/')
       .pipe(map((data: {teachers: Teacher[]}) => data.teachers));
   }
 
-  addteachers(teacher): Observable<any> {
+  addteacher(teacher): Observable<any> {
     return this.apiService.post('/teacher/add', teacher)
   }
 
-  deleteteachers(teacher): Observable<any> {
+  deleteteacher(teacher): Observable<any> {
     return this.apiService.post('/teacher/delete', teacher)
   }
 
