@@ -28,6 +28,7 @@ export interface HomeWork{
 	uid      :number
 	cid      :number
   rid      :number
+  hdesc    :string
 	comment  :string
 }
 

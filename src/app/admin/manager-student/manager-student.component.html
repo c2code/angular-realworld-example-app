@@ -35,7 +35,7 @@
           <td>{{mystudent.email}}</td>
           <td>{{mystudent.phone}}</td>
           <td>
-            <button type="button" class="btn btn-link btn-xs" (click)="onManagerHomework(mystudent.sid)">作业管理</button>
+            <button type="button" class="btn btn-link btn-xs" (click)="onManagerHomework(mystudent.uid,mystudent.uname)">作业管理</button>
             <button type="button" class="btn btn-link btn-xs" (click)="onDelete(mystudent.sid)">移除班级</button>
           </td>
         </tr>

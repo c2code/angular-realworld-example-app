@@ -4,15 +4,15 @@ import {ClassroomService} from "../../core/services/classroom.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../core/services/user.service";
 import {User} from "../../core/models/user.model";
-import {Student, Classroom} from "../../core/models/mycourses.module";
+import {Student, Classroom, HomeWork} from "../../core/models/mycourses.module";
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-manager-student',
-  templateUrl: './manager-student.component.html',
+  selector: 'app-manager-homework',
+  templateUrl: './manager-homework.component.html',
   styleUrls: ['../admin.component.css']
 })
-export class ManagerStudentComponent implements OnInit {
+export class ManagerHomeworkComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
@@ -23,7 +23,9 @@ export class ManagerStudentComponent implements OnInit {
   currentUser: User;
   classroom: Classroom;
   roomId: number;
-  studentList: Student[];
+  studentuid : number;
+  studentname: string;
+  homeworklist: HomeWork[];
 
   ngOnInit() {
 
@@ -38,14 +40,16 @@ export class ManagerStudentComponent implements OnInit {
     //获取页面参数
     this.route.queryParams.subscribe(params=> {
       this.roomId = params['rid'];
+      this.studentuid = params['uid'];
+      this.studentname = params['name'];
     });
 
     this.populateClassroom(this.roomId).subscribe(_ => {;
 
     });
 
-    //初始班级学员
-    this.populateStudents(this.roomId).subscribe(_ => {;
+    //初始化作业
+    this.populateHomeworks(this.studentuid, this.roomId).subscribe(_ => {;
 
     });
 
@@ -63,10 +67,10 @@ export class ManagerStudentComponent implements OnInit {
 
   }
 
-  populateStudents(rid) {
-    return this.classroomService.getstudents(rid*1)
-      .map((students) => {
-        this.studentList = students;
+  populateHomeworks(uid,rid) {
+    return this.classroomService.gethomeworkbyuidrid(uid, rid)
+      .map((homeworks) => {
+        this.homeworklist = homeworks;
       })
       .catch((error) => {
         console.log('error ' + error);
@@ -75,20 +79,16 @@ export class ManagerStudentComponent implements OnInit {
 
   }
 
-  onAdd():void {
-    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/add_student?rid=' + this.roomId);
-  }
-
   onReturn(){
-    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/list_classroom?cid='+this.classroom.cid);
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/m_student?rid='+ this.roomId);
   }
 
-  onManagerHomework(uid, name):void {
-    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/m_homework?uid='+uid+'&rid='+this.roomId+'&name='+name);
+  onCommentHomework(uid, cid):void {
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/modify_homework?uid='+uid+'&cid='+cid+'&name='+this.studentname+'rid='+this.roomId);
   }
 
   onDelete(sid):void {
-    var i: number;
+    /*var i: number;
     var student: Student;
     for (i=0; i < this.studentList.length; i++) {
       if (this.studentList[i].sid == sid ) {
@@ -107,7 +107,7 @@ export class ManagerStudentComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     alert("success!")
-    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/m_student?rid='+ this.roomId);
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/m_student?rid='+ this.roomId);*/
   }
 
 }

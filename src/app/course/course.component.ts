@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../core';
-import { Course } from "../core/models/mycourses.module";
+import {Course, HomeWork} from "../core/models/mycourses.module";
 import {MycoursesService} from "../core/services/mycourses.service";
 import {User} from '../core/models/user.model'
 
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import { environment } from '../../environments/environment';
+import {ClassroomService} from "../core/services/classroom.service";
+import { Observable } from 'rxjs';
 
 
 
@@ -21,6 +23,7 @@ export class CourseComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private mycoursesService: MycoursesService,
+    private classroomService: ClassroomService,
     private sanitizer:DomSanitizer
   ) { }
 
@@ -30,6 +33,7 @@ export class CourseComponent implements OnInit {
   currentpid: number;
   courseList: Course[];
   childcourses: Course[];
+  parentcourse: Course
 
   selectCourse: Course;
   media_url: string;
@@ -82,11 +86,38 @@ export class CourseComponent implements OnInit {
     return this.mycoursesService.getcourses()
       .map((courses) => {
         this.courseList = courses;
+        for (let i = 0; i < this.courseList.length; i++) {
+          if (this.courseList[i].cid === this.currentpid) {
+            this.parentcourse = this.courseList[i];
+            break
+          }
+        }
       })
       .catch((error) => {
         console.log('error ' + error);
         throw error;
       });
+
+  }
+
+  onGo(){
+    //<a *ngIf="selectCourse.cid" target="_blank" href="http://localhost:8601?user={{currentUser.username}}&&cid={{selectCourse.cid}}&&title={{selectCourse.cname}}">
+    this.classroomService.addhomework({
+      "hid":0,
+      "hstatus": "",
+      "haddr":"",
+      "uid":this.currentUser.uid*1,
+      "cid":this.selectCourse.cid*1,
+      "hdesc":this.selectCourse.cname,
+      "comment":""
+    })
+      .catch(error => Observable.throw(error)) 
+      .subscribe( 
+        data => console.log('success'), 
+        error => alert("该学员未缴费！")
+      )
+
+    window.open(`${environment.scratch_url}`+'?ha='+this.currentUser.token+'&user='+ this.currentUser.uid + '&cid='+ this.selectCourse.cid + '&title=' + this.selectCourse.cname)
 
   }
 

@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 
 
 //引用Course（课程）定义
-import {Course, Classroom, Student, Teacher} from "../../core/models/mycourses.module";
+import {Course, Classroom, Student, Teacher, HomeWork} from "../../core/models/mycourses.module";
 import {MyUser} from "../../core/models/user.model";
 
 
@@ -101,6 +101,36 @@ export class ClassroomService {
 
   modifyteachers(teacher, rid): Observable<any> {
     return this.apiService.post('/teacher/modify?rid=' + rid, teacher)
+  }
+
+  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  getlasthomework(): Observable<HomeWork> {
+    return this.apiService.get('/homework/')
+      .pipe(map((data: {homework: HomeWork}) => data.homework));
+  }
+
+   gethomeworkbyuid(uid): Observable<HomeWork[]> {
+    return this.apiService.get('/homework/?uid=' + uid)
+      .pipe(map((data: {homeworks: HomeWork[]}) => data.homeworks));
+  }
+
+  gethomeworkbyuidcid(uid,cid): Observable<HomeWork> {
+    return this.apiService.get('/homework/?uid=' + uid + '&cid=' +cid)
+      .pipe(map((data: {homework: HomeWork}) => data.homework));
+  }
+
+  gethomeworkbyuidrid(uid,rid): Observable<HomeWork[]> {
+    return this.apiService.get('/homework/?uid=' + uid + '&rid=' +rid)
+      .pipe(map((data: {homeworks: HomeWork[]}) => data.homeworks));
+  }
+
+  addhomework(homework): Observable<any> {
+    return this.apiService.post('/homework/add', homework)
+  }
+
+  modifyhomework(homework): Observable<any> {
+    return this.apiService.post('/homework/modify', homework)
   }
 
 }

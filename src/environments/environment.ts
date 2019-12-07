@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://localhost:8088/api'
+  api_url: 'http://localhost:8088/api',
+  scratch_url:'http://localhost:8601'
 };

@@ -51,9 +51,7 @@
               <br>
 
               <div style="text-align:center;">
-                <a *ngIf="selectCourse.cid" target="_blank" href="http://localhost:8601?user={{currentUser.username}}&&cid={{selectCourse.cid}}&&title={{selectCourse.cname}}">
-                  <button type="button" class="btn btn-success">去做作业</button>
-                </a>
+                <button type="button" class="btn btn-success" (click)="onGo()">去做作业</button>
               </div>
 
             </div>
