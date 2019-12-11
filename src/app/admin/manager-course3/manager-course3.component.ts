@@ -9,6 +9,8 @@ import {User} from "../../core/models/user.model";
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/map'
+
 import { environment } from '../../../environments/environment';
 
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';

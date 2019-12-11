@@ -6,6 +6,8 @@ import {UserService} from "../../core/services/user.service";
 import {User} from "../../core/models/user.model";
 import {Student, Classroom, HomeWork} from "../../core/models/mycourses.module";
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/catch'
 
 @Component({
   selector: 'app-modify-homework',
@@ -46,7 +48,7 @@ export class ModifyHomeworkComponent implements OnInit {
     });
 
     //初始化作业
-    this.populateHomeworks(this.studentuid, this.roomId).subscribe(_ => {;
+    this.populateHomeworks(this.studentuid, this.courseId).subscribe(_ => {;
 
     });
 

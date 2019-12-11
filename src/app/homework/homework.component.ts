@@ -6,6 +6,8 @@ import {UserService} from "../core/services/user.service";
 import {User} from "../core/models/user.model";
 import {Student, Classroom, HomeWork} from "../core/models/mycourses.module";
 import { environment } from '../../environments/environment';
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/catch'
 
 @Component({
   selector: 'app-homework',

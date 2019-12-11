@@ -6,6 +6,9 @@ import {UserService} from "../../core/services/user.service";
 import {User} from "../../core/models/user.model";
 import {Student, Classroom, HomeWork} from "../../core/models/mycourses.module";
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/catch'
 
 @Component({
   selector: 'app-manager-homework',
@@ -84,7 +87,11 @@ export class ManagerHomeworkComponent implements OnInit {
   }
 
   onCommentHomework(uid, cid):void {
-    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/modify_homework?uid='+uid+'&cid='+cid+'&name='+this.studentname+'rid='+this.roomId);
+    this.router.navigateByUrl('/admin/'+this.currentUser.username+'/modify_homework?uid='+uid+'&cid='+cid+'&name='+this.studentname+'&rid='+this.roomId);
+  }
+
+  onGo(uid, cid, name){
+    window.open(`${environment.scratch_url}`+'?ha='+this.currentUser.token+'&user='+ uid + '&cid='+ cid + '&title=' + name)
   }
 
   onDelete(sid):void {

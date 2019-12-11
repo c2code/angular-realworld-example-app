@@ -10,6 +10,8 @@ import { Observable } from 'rxjs';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/map'
+
 
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 

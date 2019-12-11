@@ -1,3 +1,26 @@
-<p>
-  modify-homework works!
-</p>
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      {{studentname}} 同学的 "{{homework.hdesc}}" 作业点评 ：
+    </h3>
+  </div>
+</div>
+
+<form class="form-horizontal" role="form">
+
+  <div class="form-group">
+		<div class="col-sm-12">
+			<textarea #homework_comments class="form-control" rows="6" placeholder="作业评语" value="{{homework.comment}}"></textarea>
+		</div>
+	</div>
+
+  <div class="form-group">
+    <div class="col-sm-12" style="text-align: center">
+      <button type="button" class="btn btn-primary btn-sm" (click) = "onComment(homework_comments.value)">确认</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="button" class="btn btn-primary btn-sm" (click) = "onReturn()" >取消</button>
+    </div>
+  </div>
+
+</form>
+

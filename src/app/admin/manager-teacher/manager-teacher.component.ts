@@ -6,6 +6,8 @@ import {UserService} from "../../core/services/user.service";
 import {User} from "../../core/models/user.model";
 import {Student, Classroom, Teacher} from "../../core/models/mycourses.module";
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/catch'
 
 @Component({
   selector: 'app-manager-teacher',
