@@ -30,21 +30,21 @@
 <table class="table table-striped table-hover">
     <thead>
       <tr>
-        <th  width="10%">编号</th>
-        <th>姓名</th>
-        <th>Email</th>
-        <th>电话</th>
-        <th width="10%">操作</th>
+        <th  width="10%" style="text-align:center;">编号</th>
+        <th style="text-align:center;">姓名</th>
+        <th style="text-align:center;">Email</th>
+        <th style="text-align:center;">电话</th>
+        <th width="10%" style="text-align:center;">操作</th>
       </tr>
     </thead>
 
     <tbody>
         <tr *ngFor="let myuser of userList">
-          <td>{{myuser.uid}}</td>
-          <td>{{myuser.username}}</td>
-          <td>{{myuser.email}}</td>
-          <td>{{myuser.phone}}</td>
-          <td>
+          <td style="text-align:center;">{{myuser.uid}}</td>
+          <td style="text-align:center;">{{myuser.username}}</td>
+          <td style="text-align:center;">{{myuser.email}}</td>
+          <td style="text-align:center;">{{myuser.phone}}</td>
+          <td style="text-align:center;">
             <button type="button" class="btn btn-link btn-xs" (click)="onAddTeacher(myuser.uid)">添加</button>
           </td>
         </tr>

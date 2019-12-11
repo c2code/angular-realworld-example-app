@@ -11,17 +11,17 @@
   <table class="table table-striped table-hover">
     <thead>
       <tr>
-        <th  width="10%">编号</th>
-        <th>课程名称</th>
-        <th width="15%" >班级管理</th>
+        <th  width="10%" style="text-align:center;">编号</th>
+        <th style="text-align:center;">课程名称</th>
+        <th width="15%"  style="text-align:center;">班级管理</th>
       </tr>
     </thead>
 
     <tbody>
         <tr *ngFor="let mycourse of courseList">
-          <td *ngIf="mycourse.pid == 0">{{mycourse.cid}}</td>
-          <td *ngIf="mycourse.pid == 0">{{mycourse.clevel}} {{mycourse.cname}}</td>
-          <td *ngIf="mycourse.pid == 0">
+          <td *ngIf="mycourse.pid == 0" style="text-align:center;">{{mycourse.cid}}</td>
+          <td *ngIf="mycourse.pid == 0" style="text-align:center;">{{mycourse.clevel}} {{mycourse.cname}}</td>
+          <td *ngIf="mycourse.pid == 0" style="text-align:center;">
             <button type="button" class="btn btn-link btn-xs" (click)="onManager(mycourse.cid)">班级管理</button>
           </td>
         </tr>

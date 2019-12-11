@@ -7,11 +7,11 @@
             <div class="panel-heading">
               <h3  class="panel-title">L{{ currentpid}}
                 &nbsp;<i class="icon ion-paper-airplane"></i>&nbsp;&nbsp;第{{currentcid - currentpid*10}}课
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a style="color: darkorange" class="nav-link" [routerLink]="['/mycourses', currentUser.username]" routerLinkActive="active">
-                  返回
-                </a>
+                <div class="btn-group btn-group-xs" style="float:right;">
+                  <button type="button" class="btn btn-link btn-xs" [routerLink]="['/mycourses', currentUser.username]" routerLinkActive="active">
+                    返回 <i class="icon ion-ios-undo"></i>
+                  </button>
+                </div>
               </h3>
             </div>
 
