@@ -6,6 +6,7 @@ import {UserService} from "../core/services/user.service";
 import {User} from "../core/models/user.model";
 import {Student, Classroom, HomeWork} from "../core/models/mycourses.module";
 import { environment } from '../../environments/environment';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch'
 
@@ -24,6 +25,7 @@ export class HomeworkComponent implements OnInit {
 
   currentUser: User;
   homeworklist: HomeWork[];
+  url: SafeResourceUrl;
 
   ngOnInit() {
 
@@ -39,6 +41,8 @@ export class HomeworkComponent implements OnInit {
     this.populateHomeworks().subscribe(_ => {;
 
     });
+
+    this.url = `${environment.api_url}`+'/homework/image?cid=';
 
   }
 

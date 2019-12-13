@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeworkRoutingModule } from './homework-routing.module';
 import { SharedModule } from '../shared';
 import {HomeworkComponent} from "./homework.component";
+import { SecurePipe } from './secure.pipe';
 
 @NgModule({
   imports: [
@@ -10,7 +11,8 @@ import {HomeworkComponent} from "./homework.component";
     HomeworkRoutingModule
   ],
   declarations: [
-    HomeworkComponent
+    HomeworkComponent,
+    SecurePipe
   ]
 })
 export class HomeworkModule { }
