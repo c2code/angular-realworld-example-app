@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {ClassroomService} from "../../core/services/classroom.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../core/services/user.service";
-import {User, MyUser} from "../../core/models/user.model";
+import {User} from "../../core/models/user.model";
 import {Student, Classroom, Teacher} from "../../core/models/mycourses.module";
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
@@ -23,7 +23,7 @@ export class AddTeacherComponent implements OnInit {
     private classroomService:ClassroomService) { }
 
   currentUser: User;
-  userList: MyUser[];
+  userList: User[];
   lastteacher: Teacher;
   myusername: string;
   newtid:number;

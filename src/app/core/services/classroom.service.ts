@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
 
 //引用Course（课程）定义
 import {Course, Classroom, Student, Teacher, HomeWork} from "../../core/models/mycourses.module";
-import {MyUser} from "../../core/models/user.model";
+import {User} from "../../core/models/user.model";
 
 
 @Injectable()
@@ -69,9 +69,9 @@ export class ClassroomService {
     return this.apiService.post('/student/delete', student)
   }
 
-  getuserlist(name): Observable<MyUser[]> {
+  getuserlist(name): Observable<User[]> {
     return this.apiService.get('/user/list?name=' + name)
-      .pipe(map((data: {users: MyUser[]}) => data.users));
+      .pipe(map((data: {users: User[]}) => data.users));
   }
 
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

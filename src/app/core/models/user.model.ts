@@ -5,13 +5,9 @@ export interface User {
   username: string;
   bio: string;
   image: string;
-}
-
-export interface MyUser {
-  uid:   number;
-  email: string;
-  username: string;
-  bio: string;
-  image: string;
-  phone: string;
+  role: string;
+  rights: number;
+  schedule: number;
+  phone :string;
+  nickname: string;
 }
