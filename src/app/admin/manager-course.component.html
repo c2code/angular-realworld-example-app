@@ -1,4 +1,4 @@
-<ul class="easyui-tree"  *ngIf="currentUser.email == 'admin@admin.com'">
+<ul class="easyui-tree"  *ngIf="currentUser.role == 'teacher' || currentUser.role == 'admin' || currentUser.role == 'super'">
 
   <div class="panel panel-success">
     <div class="panel-heading">

@@ -1,4 +1,4 @@
-<div class="admin-page"  *ngIf="currentUser.email == 'admin@admin.com'">
+<div class="admin-page"  *ngIf="currentUser.role == 'teacher' || currentUser.role == 'admin' || currentUser.role == 'super'">
 
   <div class="container">
 

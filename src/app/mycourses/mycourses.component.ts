@@ -55,6 +55,34 @@ export class MycoursesComponent implements OnInit {
     }
   }
 
+  onRights(course: Course): boolean {
+    if (this.currentUser.role == "teacher" || this.currentUser.role == "admin" || this.currentUser.role == "super"){
+      return true
+    }
+    var tmp = course.clevel.substr(1, course.clevel.length)
+    var rights = 1 << (parseInt(tmp) - 1)
+
+    if ((this.currentUser.rights & rights) == 0 ) {
+      return false
+    }
+
+    return true
+  }
+
+  onSchedule(course: Course): boolean {
+    if (this.currentUser.role == "teacher" || this.currentUser.role == "admin" || this.currentUser.role == "super"){
+      return true
+    }
+    var tmp = course.clevel.substr(1, course.clevel.length)
+    var rights = 1 << (parseInt(tmp) - 1)
+
+    if ((this.currentUser.rights & rights) == 0 ) {
+      return false
+    }
+
+    return true
+  }
+
   populateCourses() {
     /*this.mycoursesService.getcourses()
       .subscribe(courses => this.courseList = courses);*/

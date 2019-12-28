@@ -9,6 +9,7 @@
             <span *ngFor="let mycourse of courseList">
               <li *ngIf="mycourse.pid == 0" [class.selected]="mycourse.cid == selectcourse.cid" (click)="onSelect(mycourse)">
                 <span class="badge">{{ mycourse.clevel }}</span>{{ mycourse.cname }}
+                <i class="icon ion-android-lock" *ngIf="onRights(mycourse) == false" ></i>
               </li>
             </span>
           </ul>
@@ -18,9 +19,13 @@
           <div *ngIf="selectcourse">
             <span *ngFor="let mycourse of courseList">
               <div style="height: 80px" *ngIf="mycourse.pid == selectcourse.cid">
-                <a [routerLink]="['/mycourses', 'course',currentUser.username]" [queryParams]="{ id:mycourse.cid, pid:mycourse.pid}">
-                  <h5>{{ mycourse.cname }}</h5>
+
+                <a *ngIf="onRights(mycourse) == true" [routerLink]="['/mycourses', 'course',currentUser.username]" [queryParams]="{ id:mycourse.cid, pid:mycourse.pid}">
+                  <h5>{{ mycourse.cname }} </h5>
                 </a>
+
+                <h5 *ngIf="onRights(mycourse) == false">{{ mycourse.cname }} <i class="icon ion-android-lock" *ngIf="onRights(mycourse) == false"></i></h5>
+
                 <div>{{ mycourse.cdes }}</div>
               </div>
             </span>
@@ -43,17 +48,21 @@
           <table class="table table-bordered" *ngIf="selectcourse">
             <tbody *ngFor="let mycourse of childcourses; let i = index">
             <tr *ngIf="i % 2 == 0">
-              <td>
+              <td width="50%">
                 <p>{{ mycourse.cname.substr(0,3) }}</p>
-                <i class="icon ion-locked"></i>&nbsp;
-                <i class="icon ion-locked"></i>&nbsp;
-                <i class="icon ion-locked"></i>&nbsp;
+                <div *ngFor="let course of courseList" style="display: inline-block">
+                  <span *ngIf="course.pid == mycourse.cid" >
+                    <i class="icon ion-locked"></i>&nbsp;&nbsp;
+                  </span>
+                </div>
               </td>
               <td>
                 <p>{{ i < childcourses.length - 1 ? childcourses[i + 1].cname.substr(0,3) : "" }}</p>
-                <i class="icon ion-locked" *ngIf="i < childcourses.length - 1"></i>&nbsp;
-                <i class="icon ion-locked" *ngIf="i < childcourses.length - 1"></i>&nbsp;
-                <i class="icon ion-locked" *ngIf="i < childcourses.length - 1"></i>&nbsp;
+                <div *ngFor="let course of courseList" style="display: inline-block">
+                  <span *ngIf="(i < childcourses.length - 1) && course.pid == childcourses[i + 1].cid">
+                    <i class="icon ion-locked"></i>&nbsp;&nbsp;
+                  </span>
+                </div>
               </td>
             </tr>
             </tbody>

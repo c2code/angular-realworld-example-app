@@ -1,4 +1,4 @@
-<div class="panel panel-success" *ngIf="currentUser.email == 'admin@admin.com'">
+<div class="panel panel-success" *ngIf="currentUser.role == 'teacher' || currentUser.role == 'admin' || currentUser.role == 'super'">
   <div class="panel-heading">
     <h3 class="panel-title">
       {{studentname}} 同学的 "{{homework.hdesc}}" 作业点评 ：

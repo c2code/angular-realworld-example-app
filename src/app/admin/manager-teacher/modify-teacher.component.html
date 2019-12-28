@@ -1,4 +1,4 @@
-<div class="panel panel-success"  *ngIf="currentUser.email == 'admin@admin.com'">
+<div class="panel panel-success"  *ngIf="currentUser.role == 'teacher' || currentUser.role == 'admin' || currentUser.role == 'super'">
   <div class="panel-heading">
     <h3 class="panel-title">
       绑定教师：
@@ -27,7 +27,7 @@
 	</div>
 </div>
 
-<table class="table table-striped table-hover" *ngIf="currentUser.email == 'admin@admin.com'">
+<table class="table table-striped table-hover" *ngIf="currentUser.role == 'teacher' || currentUser.role == 'admin' || currentUser.role == 'super'">
     <thead>
       <tr>
         <th  width="10%" style="text-align:center;">编号</th>

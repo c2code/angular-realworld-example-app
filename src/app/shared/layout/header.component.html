@@ -64,7 +64,7 @@
         </a>
       </li>
 
-      <li class="nav-item" *ngIf="currentUser.email == 'admin@admin.com'">
+      <li class="nav-item" *ngIf="currentUser.role == 'teacher' || currentUser.role == 'admin' || currentUser.role == 'super'">
         <a class="nav-link"
           [routerLink]="['/admin', currentUser.username]"
           routerLinkActive="active">
