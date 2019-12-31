@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../core';
-import {Course, HomeWork} from "../core/models/mycourses.module";
+import {Course, HomeWork, Student} from "../core/models/mycourses.module";
 import {MycoursesService} from "../core/services/mycourses.service";
 import {User} from '../core/models/user.model'
 
@@ -9,6 +9,9 @@ import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import { environment } from '../../environments/environment';
 import {ClassroomService} from "../core/services/classroom.service";
 import { Observable } from 'rxjs';
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 
 
@@ -33,7 +36,9 @@ export class CourseComponent implements OnInit {
   currentpid: number;
   courseList: Course[];
   childcourses: Course[];
-  parentcourse: Course
+  parentcourse: Course;
+  student:    Student;
+  clevel:     string;
 
   selectCourse: Course;
   media_url: string;
@@ -52,13 +57,25 @@ export class CourseComponent implements OnInit {
     this.route.queryParams.subscribe(params=> {
       this.currentcid = params['id'];
       this.currentpid = params['pid'];
+      this.clevel     = params['level'];
     });
+
+    //获取当前用户学生信息
+    this.populateSudent(this.currentUser.uid, this.clevel).subscribe(_ => {;
+    });
+
+    this.url = `${environment.api_url}`+'/course/download?cid=';
 
     //获取章节课程
     this.populateCourses().subscribe(_ => {;
-      this.onSelect(this.currentcid*10 + 1);
+      for (let i = 0; i < this.courseList.length; i++) {
+        if (this.courseList[i].pid === this.currentcid*1) {
+          this.onSelect(this.courseList[i].cid);
+          break
+        }
+      }
     });
-
+    
   }
 
   onSelect(cid: number): void {
@@ -73,10 +90,6 @@ export class CourseComponent implements OnInit {
         this.childcourses.push(this.courseList[i]);
       }
     }
-
-    //this.media_url = "../../../courses_video/" + this.selectCourse.cid + "/test.mp4";
-    //this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.media_url);
-    this.url = `${environment.api_url}`+'/course/download?cid=';
   }
 
   populateCourses() {
@@ -98,6 +111,37 @@ export class CourseComponent implements OnInit {
         throw error;
       });
 
+  }
+
+  populateSudent(uid, clevel) {
+    return this.classroomService.getstudent(uid,clevel)
+      .map((student) => {
+        this.student = student;
+
+      })
+      .catch((error) => {
+        console.log('error ' + error);
+        throw error;
+      });
+
+  }
+
+  onRights(course: Course): boolean {
+    if (this.currentUser.role == "teacher" || this.currentUser.role == "admin" || this.currentUser.role == "super"){
+      return true
+    }
+    var tmp = course.clevel.substr(1, course.clevel.length)
+    var rights = 1 << (parseInt(tmp) - 1)
+
+    if ((this.currentUser.rights & rights) == 0 ) {
+      return false
+    }
+
+    if (course.cid > this.student.ccid) {
+      return false
+    }
+
+    return  true
   }
 
   onGo(){

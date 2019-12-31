@@ -38,8 +38,8 @@ export class AddTeacherComponent implements OnInit {
       }
     );
 
-    this.populateLastTeacher().subscribe(_ => {;
-    });
+    //this.populateLastTeacher().subscribe(_ => {;
+    //});
 
     if (this.myusername != ""){
       this.populateUserList(this.myusername).subscribe(_ => {;

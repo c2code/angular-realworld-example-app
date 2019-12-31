@@ -6,6 +6,7 @@ export interface Course {
     cdes  : string;
     cvedio: string;
     clevel: string;
+    depth : number;
 }
 
 export interface Classroom{
@@ -40,6 +41,8 @@ export interface Student{
 	email    :string
 	phone    :string
 	rname    :string
+  level    :string
+  ccid     :number
 }
 
 export interface Teacher{

@@ -20,7 +20,7 @@
             <span *ngFor="let mycourse of courseList">
               <div style="height: 80px" *ngIf="mycourse.pid == selectcourse.cid">
 
-                <a *ngIf="onRights(mycourse) == true" [routerLink]="['/mycourses', 'course',currentUser.username]" [queryParams]="{ id:mycourse.cid, pid:mycourse.pid}">
+                <a *ngIf="onRights(mycourse) == true" [routerLink]="['/mycourses', 'course',currentUser.username]" [queryParams]="{ id:mycourse.cid, pid:mycourse.pid,level:mycourse.clevel}">
                   <h5>{{ mycourse.cname }} </h5>
                 </a>
 

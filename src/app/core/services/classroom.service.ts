@@ -56,6 +56,11 @@ export class ClassroomService {
       .pipe(map((data: {student: Student}) => data.student));
   }
 
+  getstudent(uid, clevel): Observable<Student> {
+    return this.apiService.get('/student/?uid=' + uid + '&clevel=' + clevel)
+      .pipe(map((data: {student: Student}) => data.student));
+  }
+
   getstudents(rid): Observable<Student[]> {
     return this.apiService.get('/student/?rid=' + rid)
       .pipe(map((data: {students: Student[]}) => data.students));

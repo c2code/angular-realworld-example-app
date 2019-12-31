@@ -141,7 +141,7 @@ export class CourseAddComponent implements OnInit {
 
   onAdd(cid: number, name:string, desc:string){
 
-    this.mycoursesService.addcourse({"cid":cid, "cname":name, "cdes":desc.toString(), "clevel":this.currentLevel, "pid":this.currentPid*1, "cvedio":""})
+    this.mycoursesService.addcourse({"cid":cid, "cname":name, "cdes":desc.toString(), "clevel":this.currentLevel, "pid":this.currentPid*1, "cvedio":"","depth":0})
       .catch(error => Observable.throw(error)) 
       .subscribe( 
         data => console.log('success'), 

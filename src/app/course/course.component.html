@@ -17,17 +17,20 @@
 
 
             <div class="panel-body" style="height:560px;">
-              <span *ngFor="let mycourse of courseList">
+              <span *ngFor="let mycourse of courseList" class="mycourses">
 
-                <h5 *ngIf="mycourse.pid == currentcid" [class.selected]="mycourse.cid == selectCourse.cid" (click)="onSelect(mycourse.cid)">
-                  <div><i class="icon ion-flag"></i>&nbsp;{{mycourse.cname}}</div>
+                <a *ngIf="mycourse.pid == currentcid && onRights(mycourse)" [class.selected]="mycourse.cid == selectCourse.cid" (click)="onSelect(mycourse.cid)">
+                  <i class="icon ion-flag"></i>&nbsp;<span style="cursor:pointer;">{{mycourse.cname}}</span>
+                </a>
+                <h5 *ngIf="mycourse.pid == currentcid && onRights(mycourse) ===false ">
+                  <div><i class="icon ion-flag"></i>&nbsp;{{mycourse.cname}} <i class="icon ion-android-lock"></i></div>
                 </h5>
 
                 <span *ngFor="let child of courseList">
                   <div *ngIf="child.pid == mycourse.cid && mycourse.pid == currentcid
                   && (mycourse.cid == selectCourse.cid || child.cid == selectCourse.cid || child.pid == selectCourse.pid)"
                        [class.selected]="child.cid == selectCourse.cid" (click)="onSelect(child.cid)">
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a><i class="icon ion-ios-play"></i>&nbsp;{{child.cname}}</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="icon ion-ios-play"></i><span style="cursor:pointer;">&nbsp;{{child.cname}}</span>
                     <br>
                   </div>
                 </span>

@@ -49,8 +49,8 @@ export class AddStudentComponent implements OnInit {
     this.populateClassroom(this.roomId).subscribe(_ => {;
     });
 
-    this.populateLastSudent().subscribe(_ => {;
-    });
+    //this.populateLastSudent().subscribe(_ => {;
+    //});
 
     if (this.myusername != ""){
       this.populateUserList(this.myusername).subscribe(_ => {;
@@ -112,7 +112,9 @@ export class AddStudentComponent implements OnInit {
       "uname":"",
       "email":"",
       "phoe":"",
-      "rname":""
+      "rname":"",
+      "level":"",
+      "ccid" :0
     })
       .catch(error => Observable.throw(error)) 
       .subscribe( 
