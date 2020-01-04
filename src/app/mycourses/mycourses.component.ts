@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../core';
-import { Course } from "../core/models/mycourses.module";
+import {Course, Student} from "../core/models/mycourses.module";
 import {MycoursesService} from "../core/services/mycourses.service";
 import {User} from '../core/models/user.model'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import {ClassroomService} from "../core/services/classroom.service";
 
 @Component({
   selector: 'app-mycourses-page',
@@ -18,6 +19,7 @@ export class MycoursesComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
+    private classroomService: ClassroomService,
     private mycoursesService: MycoursesService
   ) { }
 
@@ -25,6 +27,7 @@ export class MycoursesComponent implements OnInit {
   selectcourse : Course;
   childcourses : Course[] = [];
   currentUser: User;
+  student : Student;
 
   ngOnInit() {
 
@@ -53,6 +56,9 @@ export class MycoursesComponent implements OnInit {
         this.childcourses.push(this.courseList[i]);
       }
     }
+
+    this.populateSudent(this.currentUser.uid, course.clevel).subscribe(_ => {;
+    });
   }
 
   onRights(course: Course): boolean {
@@ -67,6 +73,37 @@ export class MycoursesComponent implements OnInit {
     }
 
     return true
+  }
+
+  onPlan(course: Course): boolean {
+    if (this.currentUser.role == "teacher" || this.currentUser.role == "admin" || this.currentUser.role == "super"){
+      return true
+    }
+    var tmp = course.clevel.substr(1, course.clevel.length)
+    var rights = 1 << (parseInt(tmp) - 1)
+
+    if ((this.currentUser.rights & rights) == 0 ) {
+      return false
+    }
+
+    if (course.cid > this.student.ccid) {
+      return false
+    }
+
+    return  true
+  }
+
+  populateSudent(uid, clevel) {
+    return this.classroomService.getstudent(uid,clevel)
+      .map((student) => {
+        this.student = student;
+
+      })
+      .catch((error) => {
+        console.log('error ' + error);
+        throw error;
+      });
+
   }
 
   populateCourses() {

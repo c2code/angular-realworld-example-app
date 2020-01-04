@@ -20,7 +20,7 @@
               <span *ngFor="let mycourse of courseList" class="mycourses">
 
                 <a *ngIf="mycourse.pid == currentcid && onRights(mycourse)" [class.selected]="mycourse.cid == selectCourse.cid" (click)="onSelect(mycourse.cid)">
-                  <i class="icon ion-flag"></i>&nbsp;<span style="cursor:pointer;">{{mycourse.cname}}</span>
+                  <span style="cursor:pointer;"><i class="icon ion-flag"></i>&nbsp;{{mycourse.cname}}</span>
                 </a>
                 <h5 *ngIf="mycourse.pid == currentcid && onRights(mycourse) ===false ">
                   <div><i class="icon ion-flag"></i>&nbsp;{{mycourse.cname}} <i class="icon ion-android-lock"></i></div>
@@ -30,7 +30,7 @@
                   <div *ngIf="child.pid == mycourse.cid && mycourse.pid == currentcid
                   && (mycourse.cid == selectCourse.cid || child.cid == selectCourse.cid || child.pid == selectCourse.pid)"
                        [class.selected]="child.cid == selectCourse.cid" (click)="onSelect(child.cid)">
-                    &nbsp;&nbsp;&nbsp;&nbsp;<i class="icon ion-ios-play"></i><span style="cursor:pointer;">&nbsp;{{child.cname}}</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="cursor:pointer;"><i class="icon ion-ios-play"></i>&nbsp;{{child.cname}}</span>
                     <br>
                   </div>
                 </span>
@@ -41,7 +41,7 @@
           </div>
         </div>
 
-        <div class="col-sm-9" style="margin-right:-20px">
+        <div *ngIf="onRights(selectCourse)" class="col-sm-9" style="margin-right:-20px">
           <div class="panel panel-success">
             <div class="panel-body" style="height:600px;">
               <h1  class="panel-title">{{selectCourse.cname}}</h1>
