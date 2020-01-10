@@ -19,9 +19,9 @@
             <div class="panel-body" style="height:560px;">
               <span *ngFor="let mycourse of courseList" class="mycourses">
 
-                <a *ngIf="mycourse.pid == currentcid && onRights(mycourse)" [class.selected]="mycourse.cid == selectCourse.cid" (click)="onSelect(mycourse.cid)">
+                <h5 *ngIf="mycourse.pid == currentcid && onRights(mycourse)" [class.selected]="mycourse.cid == selectCourse.cid" (click)="onSelect(mycourse.cid)">
                   <span style="cursor:pointer;"><i class="icon ion-flag"></i>&nbsp;{{mycourse.cname}}</span>
-                </a>
+                </h5>
                 <h5 *ngIf="mycourse.pid == currentcid && onRights(mycourse) ===false ">
                   <div><i class="icon ion-flag"></i>&nbsp;{{mycourse.cname}} <i class="icon ion-android-lock"></i></div>
                 </h5>

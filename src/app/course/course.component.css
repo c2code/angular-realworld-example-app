@@ -1,10 +1,11 @@
 .selected {
-    background-color: #d1dcdc !important;
+    background-color: #75dc88 !important;
     color: white;
     cursor: pointer;
 }
 
 .mycourses {
+    color: #3978c5;
     margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
@@ -26,8 +27,8 @@
     cursor: pointer;
 }
 .mycourses span:hover {
-    color: #607D8B;
-    background-color: #DDD;
+    color: #3b86ff;
+    background-color: #75dc88;
     left: .1em;
 }
 .mycourses .text {
