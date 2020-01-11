@@ -54,4 +54,8 @@ export class HomeComponent implements OnInit {
     // Otherwise, set the list object
     this.listConfig = {type: type, filters: filters};
   }
+
+  onGo(){
+    alert("内测阶段，请到登录页面注册新用户免费试用，谢谢^v^")
+  }
 }
