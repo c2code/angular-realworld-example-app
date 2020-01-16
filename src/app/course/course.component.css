@@ -1,5 +1,5 @@
 .selected {
-    background-color: #75dc88 !important;
+    background-color: #d1dcdc !important;
     color: white;
     cursor: pointer;
 }
@@ -28,7 +28,7 @@
 }
 .mycourses span:hover {
     color: #3b86ff;
-    background-color: #75dc88;
+    background-color: #f4ffff;
     left: .1em;
 }
 .mycourses .text {

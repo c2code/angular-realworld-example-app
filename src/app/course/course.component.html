@@ -19,11 +19,15 @@
             <div class="panel-body" style="height:560px;">
               <span *ngFor="let mycourse of courseList" class="mycourses">
 
-                <h5 *ngIf="mycourse.pid == currentcid && onRights(mycourse)" [class.selected]="mycourse.cid == selectCourse.cid" (click)="onSelect(mycourse.cid)">
-                  <span style="cursor:pointer;"><i class="icon ion-flag"></i>&nbsp;{{mycourse.cname}}</span>
+                <h5 *ngIf="mycourse.pid == currentcid && onRights(mycourse) === true" [class.selected]="mycourse.cid == selectCourse.cid" (click)="onSelect(mycourse.cid)">
+                  <span style="cursor:pointer;">
+                    <i class="icon ion-flag"></i>&nbsp;{{mycourse.cname}}&nbsp;
+                    <i *ngIf="mycourse.cid < student.ccid" class="icon ion-checkmark-circled" style="color: green"></i>
+                    <i *ngIf="mycourse.cid === student.ccid" class="icon ion-man" style="color: red"></i>
+                  </span>
                 </h5>
-                <h5 *ngIf="mycourse.pid == currentcid && onRights(mycourse) ===false ">
-                  <div><i class="icon ion-flag"></i>&nbsp;{{mycourse.cname}} <i class="icon ion-android-lock"></i></div>
+                <h5 *ngIf="mycourse.pid == currentcid && onRights(mycourse) === false ">
+                  <div><i class="icon ion-flag"></i>&nbsp;{{mycourse.cname}} &nbsp;<i class="icon ion-android-lock" style="color: black"></i></div>
                 </h5>
 
                 <span *ngFor="let child of courseList">

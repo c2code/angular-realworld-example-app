@@ -75,7 +75,7 @@ export class CourseComponent implements OnInit {
         }
       }
     });
-    
+
   }
 
   onSelect(cid: number): void {
@@ -135,6 +135,10 @@ export class CourseComponent implements OnInit {
 
     if ((this.currentUser.rights & rights) == 0 ) {
       return false
+    }
+
+    if (course.depth > 3) {
+      return true
     }
 
     if (course.cid > this.student.ccid) {
