@@ -23,7 +23,7 @@
                   <span style="cursor:pointer;">
                     <i class="icon ion-flag"></i>&nbsp;{{mycourse.cname}}&nbsp;
                     <i *ngIf="mycourse.cid < student.ccid" class="icon ion-checkmark-circled" style="color: green"></i>
-                    <i *ngIf="mycourse.cid === student.ccid" class="icon ion-man" style="color: red"></i>
+                    <i *ngIf="mycourse.cid === student.ccid" class="icon ion-person" style="color: red"></i>
                   </span>
                 </h5>
                 <h5 *ngIf="mycourse.pid == currentcid && onRights(mycourse) === false ">
