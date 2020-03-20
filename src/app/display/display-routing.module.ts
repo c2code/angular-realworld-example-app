@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {AuthGuard} from "../core/services/auth-guard.service";
 import { RouterModule, Routes } from '@angular/router';
-import {HomeworkComponent} from "./homework.component";
+import {DisplayComponent} from "./display.component";
 
 const routes: Routes = [
   {
     path: ':username',
-    component: HomeworkComponent,
+    component: DisplayComponent,
     canActivate: [AuthGuard]
   }
 
@@ -18,4 +18,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class HomeworkRoutingModule { }
+
+export class DisplayRoutingModule { }

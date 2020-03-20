@@ -17,7 +17,11 @@
         <td style="text-align:center;">{{myhomework.hdesc}}</td>
         <td style="text-align:center;">{{myhomework.hstatus}}</td>
         <td style="text-align:center;">
-          <img [src]="url+myhomework.cid.toString()+'&uid='+myhomework.uid | secure | async" width="55%" height="35%">
+          <a class="nav-link"
+          [routerLink]="['/display',currentUser.username]" [queryParams]="{ uid:myhomework.uid, cid:myhomework.cid}"
+          routerLinkActive="active">
+            <img [src]="url+myhomework.cid.toString()+'&uid='+myhomework.uid | secure | async" width="55%" height="35%">
+          </a>
         </td>
         <td>{{myhomework.comment}}</td>
         <td style="text-align:center;">

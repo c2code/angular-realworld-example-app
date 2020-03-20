@@ -19,5 +19,6 @@ var domain_name = extractHostname(location.toLocaleString());
 export const environment = {
   production: false,
   api_url: 'http://'+ domain_name +':8088/api',
-  scratch_url:'http://'+domain_name+':8601'
+  scratch_url:'http://'+domain_name+':8601',
+  display_url:'http://'+domain_name+':8080'
 };

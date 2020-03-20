@@ -42,6 +42,11 @@ const routes: Routes = [
     path: 'homework',
     loadChildren: './homework/homework.module#HomeworkModule',
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'display',
+    loadChildren: './display/display.module#DisplayModule',
+    canActivate: [AuthGuard]
   }
 ];
 
