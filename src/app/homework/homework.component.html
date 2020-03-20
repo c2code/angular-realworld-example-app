@@ -20,7 +20,7 @@
           <a class="nav-link"
           [routerLink]="['/display',currentUser.username]" [queryParams]="{ uid:myhomework.uid, cid:myhomework.cid}"
           routerLinkActive="active">
-            <img [src]="url+myhomework.cid.toString()+'&uid='+myhomework.uid | secure | async" width="55%" height="35%">
+            <img [src]="url+myhomework.cid.toString()+'&uid='+myhomework.uid | secure | async" width="55%" height="35%"/>
           </a>
         </td>
         <td>{{myhomework.comment}}</td>
