@@ -2,6 +2,11 @@
   <div class="panel-heading">
     <h3 class="panel-title">
       {{studentname}} 同学的 "{{homework.hdesc}}" 作业点评 ：
+      <div class="btn-group btn-group-xs" style="float:right;">
+          <button type="button" class="btn btn-link btn-xs" (click)="onReturn()">
+            <i class="icon ion-ios-redo"></i> 返回
+          </button>
+      </div>
     </h3>
   </div>
 </div>
@@ -18,8 +23,7 @@
         <textarea #homework_comments class="form-control" rows="15" placeholder="作业评语" value="{{homework.comment}}"></textarea>
       </div>
       <div style="text-align: center; margin-top: 30px">
-        <button type="button" class="btn btn-primary btn-sm" (click) = "onComment(homework_comments.value)">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="button" class="btn btn-primary btn-sm" (click) = "onReturn()" >返回</button>
+        <button type="button" class="btn btn-primary btn-sm" (click) = "onComment(homework_comments.value)">提交</button>
       </div>
 		</div>
 	</div>
