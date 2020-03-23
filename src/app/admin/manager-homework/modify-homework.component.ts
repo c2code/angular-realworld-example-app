@@ -5,6 +5,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../core/services/user.service";
 import {User} from "../../core/models/user.model";
 import {Student, Classroom, HomeWork} from "../../core/models/mycourses.module";
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch'
@@ -20,7 +22,8 @@ export class ModifyHomeworkComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private classroomService:ClassroomService) { }
+    private classroomService:ClassroomService,
+    private sanitizer: DomSanitizer) { }
 
   currentUser: User;
   courseId: number;
@@ -28,6 +31,7 @@ export class ModifyHomeworkComponent implements OnInit {
   studentuid : number;
   studentname: string;
   homework: HomeWork;
+  url: string = "";
 
   ngOnInit() {
 
@@ -51,6 +55,8 @@ export class ModifyHomeworkComponent implements OnInit {
     this.populateHomeworks(this.studentuid, this.courseId).subscribe(_ => {;
 
     });
+
+    this.url = `${environment.display_url}`+'/embed.html?uid='+this.studentuid+'&cid='+this.courseId+'&auto-start=false&light-content=false&w=480&h=360';
 
   }
 
@@ -82,6 +88,10 @@ export class ModifyHomeworkComponent implements OnInit {
       )
 
     this.router.navigateByUrl('/admin/'+this.currentUser.username+'/m_homework?uid='+this.studentuid+'&rid='+this.roomId+'&name='+this.studentname);
+  }
+
+  safeurl() {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
 
 }
