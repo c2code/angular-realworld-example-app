@@ -28,12 +28,20 @@
     <tbody>
         <tr *ngFor="let myhomework of homeworklist">
           <td style="text-align:center;">{{myhomework.hid}}</td>
-          <td style="text-align:center;">{{myhomework.hdesc}}</td>
-          <td style="text-align:center;">{{myhomework.hstatus}}</td>
-          <td>{{myhomework.comment}}</td>
           <td style="text-align:center;">
-            <button type="button" class="btn btn-link btn-xs" (click)="onGo(myhomework.uid, myhomework.cid, myhomework.hdesc)">查看作业</button>
-            <button type="button" class="btn btn-link btn-xs" (click)="onCommentHomework(myhomework.uid, myhomework.cid)">作业点评</button>
+            <div style="width:160px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">
+              {{myhomework.hdesc}}
+            </div>
+          </td>
+          <td style="text-align:center;">{{myhomework.hstatus}}</td>
+          <td>
+            <div style="width:360px;  text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">
+              {{myhomework.comment}}
+            </div>
+          </td>
+          <td style="text-align:center;">
+            <button type="button" class="btn btn-link btn-xs" (click)="onCommentHomework(myhomework.uid, myhomework.cid)">点评</button>
+            <button type="button" class="btn btn-link btn-xs" (click)="onGo(myhomework.uid, myhomework.cid, myhomework.hdesc)">编辑</button>
           </td>
         </tr>
     </tbody>

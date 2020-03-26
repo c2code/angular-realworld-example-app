@@ -7,6 +7,7 @@ import {User} from "../core/models/user.model";
 import {Student, Classroom, HomeWork} from "../core/models/mycourses.module";
 import { environment } from '../../environments/environment';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch'
 
@@ -26,6 +27,7 @@ export class HomeworkComponent implements OnInit {
   currentUser: User;
   homeworklist: HomeWork[];
   url: SafeResourceUrl;
+  homework: HomeWork = <HomeWork>{};
 
   ngOnInit() {
 
@@ -60,6 +62,24 @@ export class HomeworkComponent implements OnInit {
 
   onGo(cid, name){
     window.open(`${environment.scratch_url}`+'?ha='+this.currentUser.token+'&user='+ this.currentUser.uid + '&cid='+ cid + '&title=' + name)
+  }
+
+  onCommit(cid){
+    this.homework.hstatus = '已提交'
+    this.homework.cid = cid;
+    this.homework.uid = this.currentUser.uid;
+
+    this.classroomService.commithomework(this.homework)
+      .catch(error => Observable.throw(error)) 
+      .subscribe( 
+        data => alert("提交成功!"), 
+        error => alert("提交失败!") 
+      )
+
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+
+    this.router.navigateByUrl('/homework/'+this.currentUser.username);
   }
 
 }

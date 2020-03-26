@@ -138,4 +138,8 @@ export class ClassroomService {
     return this.apiService.post('/homework/modify', homework)
   }
 
+  commithomework(homework): Observable<any> {
+    return this.apiService.post('/homework/update', homework)
+  }
+
 }

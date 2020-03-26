@@ -32,19 +32,21 @@
     </table-->
 
     <div class="row">
-      <div class="col-sm-3 col-md-3 col-xs-3" *ngFor="let myhomework of homeworklist">
+      <div class="col-sm-6 col-md-3 col-xs-6" *ngFor="let myhomework of homeworklist">
         <div class="thumbnail">
           <a class="nav-link"
           [routerLink]="['/display',currentUser.username]" [queryParams]="{ uid:myhomework.uid, cid:myhomework.cid}"
           routerLinkActive="active">
             <img [src]="url+myhomework.cid.toString()+'&uid='+myhomework.uid | secure | async" width="100%" height="100%"/>
           </a>
-            <div class="caption">
-                <h5>{{myhomework.hdesc}} &nbsp; &nbsp;{{myhomework.hstatus}}</h5>
-                <p>点评：{{myhomework.comment}}</p>
-                <p>
+            <div>
+                <p style="width:180px;  text-overflow:ellipsis; white-space:nowrap; overflow:hidden; display: inline; font-weight: 700">{{myhomework.hdesc}}</p>
+                <p style="display: inline; float: right">{{myhomework.hstatus}} &nbsp; </p>
+                <p style="width:250px;  text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">点评：{{myhomework.comment}}</p>
+                <div style="text-align: right">
+                  <button type="button" class="btn btn-link btn-xs" (click)="onCommit(myhomework.cid)">提交作业</button>
                   <button type="button" class="btn btn-link btn-xs" (click)="onGo(myhomework.cid, myhomework.hdesc)">编辑作业</button>
-                </p>
+                </div>
             </div>
         </div>
       </div>
