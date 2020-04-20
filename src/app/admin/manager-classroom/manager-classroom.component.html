@@ -12,15 +12,17 @@
     <thead>
       <tr>
         <th  width="10%" style="text-align:center;">编号</th>
-        <th style="text-align:center;">课程名称</th>
-        <th width="15%"  style="text-align:center;">班级管理</th>
+        <th style="text-align:center;">年级</th>
+        <th style="text-align:center;">班级数量</th>
+        <th width="15%"  style="text-align:center;">操作</th>
       </tr>
     </thead>
 
     <tbody>
-        <tr *ngFor="let mycourse of courseList">
+        <tr *ngFor="let mycourse of courseList; let i = index">
           <td *ngIf="mycourse.pid == 0" style="text-align:center;">{{mycourse.cid}}</td>
           <td *ngIf="mycourse.pid == 0" style="text-align:center;">{{mycourse.clevel}} {{mycourse.cname}}</td>
+          <td *ngIf="mycourse.pid == 0" style="text-align:center;">{{classroomNum[mycourse.cid*1]}}</td>
           <td *ngIf="mycourse.pid == 0" style="text-align:center;">
             <button type="button" class="btn btn-link btn-xs" (click)="onManager(mycourse.cid)">班级管理</button>
           </td>
