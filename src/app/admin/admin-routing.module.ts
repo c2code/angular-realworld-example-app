@@ -20,6 +20,7 @@ import {AddTeacherComponent} from "./manager-teacher/add-teacher.component";
 import {ModifyTeacherComponent} from "./manager-teacher/modify-teacher.component";
 import {ManagerHomeworkComponent} from "./manager-homework/manager-homework.component";
 import {ModifyHomeworkComponent} from "./manager-homework/modify-homework.component";
+import {ListStudentComponent} from "./manager-student/list-student.component";
 
 const routes: Routes = [
   {
@@ -78,6 +79,10 @@ const routes: Routes = [
       {
         path: 'add_student',
         component: AddStudentComponent
+      },
+      {
+        path: 'list_student',
+        component: ListStudentComponent
       },
       {
         path: 'm_teacher',

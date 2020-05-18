@@ -66,6 +66,16 @@ export class ClassroomService {
       .pipe(map((data: {students: Student[]}) => data.students));
   }
 
+  getstudentsbypage(page): Observable<Student[]> {
+    return this.apiService.get('/student/?page=' + page)
+      .pipe(map((data: {students: Student[]}) => data.students));
+  }
+
+  getstudentscount(): Observable<number> {
+    return this.apiService.get('/student/count')
+      .pipe(map((data: {count: number}) => data.count));
+  }
+
   addstudent(student): Observable<any> {
     return this.apiService.post('/student/add', student)
   }
